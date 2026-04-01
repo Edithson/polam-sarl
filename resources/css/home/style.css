@@ -1,0 +1,359 @@
+/* Réduction globale de 10% */
+html {
+    font-size: 90%; /* Par défaut c'est 100% (16px) */
+}
+
+/* Ou réduction globale de 15% */
+html {
+    font-size: 95%;
+}
+
+/* Réduire aussi les espacements */
+* {
+    --spacing-scale: 0.9; /* 90% de la taille normale */
+}
+/* Navigation */
+nav {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+    transition: all 0.3s ease;
+}
+
+nav.scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Hero Section avec vraie mise en page moderne */
+.hero-gradient {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 50%, #166534 100%);
+    position: relative;
+}
+
+.hero-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 1;
+}
+
+/* Cartes de services avec design premium */
+.service-card {
+    background: white;
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #16a34a, #ec4899);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(22, 163, 74, 0.15);
+}
+
+.service-card:hover::before {
+    transform: scaleX(1);
+}
+
+.service-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+    transform: scale(1.1) rotate(-5deg);
+    background: linear-gradient(135deg, #16a34a, #15803d);
+}
+
+.service-card:hover .service-icon {
+    color: white;
+}
+
+/* Animations personnalisées */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Boutons modernes */
+.btn-primary {
+    background: linear-gradient(135deg, #16a34a, #15803d);
+    color: white;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(22, 163, 74, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(22, 163, 74, 0.4);
+}
+
+.btn-outline {
+    background: white;
+    color: #16a34a;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+    border: 2px solid white;
+}
+
+.btn-outline:hover {
+    background: transparent;
+    transform: translateY(-2px);
+}
+
+/* Stats avec effet premium */
+.stat-card {
+    text-align: center;
+    padding: 2rem;
+}
+
+.stat-number {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #16a34a, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+/* Section About avec design asymétrique */
+.about-image {
+    position: relative;
+    height: 500px;
+}
+
+.about-shape-1 {
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    background: linear-gradient(135deg, #16a34a, #15803d);
+    border-radius: 30px;
+    top: 0;
+    left: 0;
+    transform: rotate(-6deg);
+}
+
+.about-shape-2 {
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    background: linear-gradient(135deg, #ec4899, #db2777);
+    border-radius: 30px;
+    bottom: 0;
+    right: 0;
+    transform: rotate(6deg);
+}
+
+.about-content {
+    position: absolute;
+    width: 85%;
+    height: 85%;
+    background: white;
+    border-radius: 30px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.about-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Contact form stylé */
+.form-input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #16a34a;
+    box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.1);
+}
+
+/* CTA Section avec effet parallax */
+.cta-section {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-section::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    top: -250px;
+    right: -250px;
+    animation: float 6s ease-in-out infinite;
+}
+
+.cta-section::after {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(236,72,153,0.2) 0%, transparent 70%);
+    bottom: -200px;
+    left: -200px;
+    animation: float 8s ease-in-out infinite;
+}
+
+/* Menu mobile */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 400px;
+    height: 100vh;
+    background: white;
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    padding: 2rem;
+}
+
+.mobile-menu.active {
+    right: 0;
+}
+
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.mobile-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .stat-number {
+        font-size: 2.5rem;
+    }
+
+    .about-image {
+        height: 350px;
+    }
+}
+
+/* Effet de scan laser horizontal pour industrial process */
+@keyframes scanline {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.pipeline-card {
+    position: relative;
+    overflow: hidden;
+}
+
+/* L'effet de scan laser au survol */
+.pipeline-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #10b981, transparent);
+    transform: translateY(-100%);
+    transition: transform 0.8s ease;
+}
+
+.pipeline-card:hover::after {
+    animation: scan-vertical 1.5s infinite;
+}
+
+@keyframes scan-vertical {
+    0% { transform: translateY(0); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(400px); opacity: 0; }
+}

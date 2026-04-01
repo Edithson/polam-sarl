@@ -1,0 +1,35 @@
+Intégration du reCAPTCHA
+
+Commencez par installer "django-recaptcha" dans le projet
+avec un "uv sync" ou "pip install django-recaptcha"
+
+Pour obtenir les clés :
+Accédez à la console Google reCAPTCHA : https://www.google.com/recaptcha/admin/
+
+Connectez-vous avec votre compte Google.
+
+Enregistrez un nouveau site :
+
+    Cliquez sur le bouton + Créer ou l'icône +.
+    Remplissez le formulaire et choisissez la version 3 de reCAPTCHA
+
+    Domaines : "tontinekamologne.com" ajoutez également 127.0.0.1 et localhost pour que ça fonctionne en locale.
+
+    Acceptez les conditions d'utilisation et cliquez sur Envoyer.
+
+Après l'enregistrement, Google affichera deux clés :
+
+Clé du site (Site key) : C'est la Clé publique (RECAPTCHA_PUBLIC_KEY).
+
+Clé secrète (Secret key) : C'est la Clé privée (RECAPTCHA_PRIVATE_KEY).
+
+Ajouter en fin ces 2 clés dans vos variable d'environnement!
+
+EX :
+    RECAPTCHA_PUBLIC_KEY = 'XXXXXXXXXXXXXX'
+    RECAPTCHA_PRIVATE_KEY = 'XXXXXXXXXXXXXX'
+
+En fin :
+Redemarez le serveur
+Testez le formulaire de contact
+Vérifiez que le badge reCAPTCHA apparaît en bas à droite de la page
