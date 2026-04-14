@@ -1,0 +1,1883 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POLAM SARL – La Technologie & L'Innovation à Votre Portée</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --orange: #F97316;
+    --orange-deep: #EA580C;
+    --orange-glow: #FB923C;
+    --dark: #0A0A0A;
+    --dark-2: #111111;
+    --dark-3: #1A1A1A;
+    --dark-4: #222222;
+    --white: #FAFAFA;
+    --gray: #888888;
+    --gray-light: #BBBBBB;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE TEXTURE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.3;
+  }
+
+  /* ─── TYPOGRAPHY ─── */
+  .font-display { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.05em; }
+  .font-heading { font-family: 'Syne', sans-serif; }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(20px);
+    background: rgba(10,10,10,0.85);
+    border-bottom: 1px solid rgba(249,115,22,0.15);
+    transition: all 0.3s ease;
+  }
+
+  .logo-mark {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .logo-circuit {
+    width: 40px; height: 40px;
+    position: relative;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-light);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1.5px;
+    background: var(--orange);
+    transition: width 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .btn-nav {
+    background: var(--orange);
+    color: #000;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.4rem;
+    border: none;
+    cursor: pointer;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-nav:hover {
+    background: var(--orange-glow);
+    transform: translateY(-1px);
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 7rem 2rem 4rem;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 70% 50%, rgba(249,115,22,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(249,115,22,0.06) 0%, transparent 60%),
+      var(--dark);
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(249,115,22,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(249,115,22,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  }
+
+  /* Diagonal accent line */
+  .hero-diagonal {
+    position: absolute;
+    top: 0; right: 0;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 50%, rgba(249,115,22,0.03) 50%);
+    border-left: 1px solid rgba(249,115,22,0.1);
+    clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(249,115,22,0.1);
+    border: 1px solid rgba(249,115,22,0.3);
+    padding: 0.35rem 1rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .badge-dot {
+    width: 6px; height: 6px;
+    background: var(--orange);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.5); }
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+
+  .hero-title .line-orange { color: var(--orange); }
+  .hero-title .line-outline {
+    -webkit-text-stroke: 1.5px rgba(255,255,255,0.3);
+    color: transparent;
+  }
+
+  .hero-sub {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    color: var(--gray-light);
+    line-height: 1.7;
+    max-width: 460px;
+    font-weight: 300;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .stat-item {}
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    color: var(--orange);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .btn-primary {
+    background: var(--orange);
+    color: #000;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.85rem 2rem;
+    border: none;
+    cursor: pointer;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: all 0.25s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: var(--orange-glow);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(249,115,22,0.4);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--white);
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.85rem 2rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    cursor: pointer;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: all 0.25s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--orange);
+    color: var(--orange);
+    transform: translateY(-2px);
+  }
+
+  /* Hero Right - Visual Panel */
+  .hero-visual {
+    position: relative;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .circuit-card {
+    background: var(--dark-3);
+    border: 1px solid rgba(249,115,22,0.15);
+    border-radius: 4px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .circuit-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--orange), transparent);
+  }
+
+  .service-grid-mini {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(249,115,22,0.08);
+    border: 1px solid rgba(249,115,22,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .service-mini-item {
+    background: var(--dark-2);
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: background 0.3s;
+    cursor: default;
+  }
+
+  .service-mini-item:hover {
+    background: rgba(249,115,22,0.08);
+  }
+
+  .service-mini-icon {
+    font-size: 1.5rem;
+  }
+
+  .service-mini-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--white);
+  }
+
+  .service-mini-desc {
+    font-size: 0.65rem;
+    color: var(--gray);
+    line-height: 1.4;
+  }
+
+  .hero-accent-tag {
+    position: absolute;
+    bottom: -16px;
+    right: 24px;
+    background: var(--orange);
+    color: #000;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+  }
+
+  /* Floating circuit animation */
+  .float-el {
+    position: absolute;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── MARQUEE BAND ─── */
+  .marquee-band {
+    background: var(--orange);
+    padding: 0.85rem 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 0;
+    white-space: nowrap;
+    animation: marquee 20s linear infinite;
+  }
+
+  .marquee-item {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    color: #000;
+    padding: 0 2rem;
+    flex-shrink: 0;
+  }
+
+  .marquee-sep {
+    color: rgba(0,0,0,0.4);
+    padding: 0 0.5rem;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ─── ABOUT SECTION ─── */
+  section {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-full {
+    max-width: 100%;
+    padding: 6rem 0;
+  }
+
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1.2rem;
+  }
+
+  .section-tag::before {
+    content: '';
+    width: 24px; height: 1.5px;
+    background: var(--orange);
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+
+  /* About layout */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .about-year-badge {
+    display: inline-block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 7rem;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(249,115,22,0.25);
+    margin-bottom: -1rem;
+    position: relative;
+    z-index: 0;
+  }
+
+  .about-text {
+    font-size: 1rem;
+    color: var(--gray-light);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .about-pillars {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .pillar {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .pillar-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    color: var(--orange);
+    opacity: 0.6;
+    min-width: 28px;
+    line-height: 1.6;
+  }
+
+  .pillar-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .pillar-desc {
+    font-size: 0.82rem;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  /* ─── SERVICES ─── */
+  .services-section {
+    background: var(--dark-2);
+    padding: 6rem 2rem;
+  }
+
+  .services-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(249,115,22,0.06);
+  }
+
+  .service-card {
+    background: var(--dark-2);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.35s ease;
+    cursor: default;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 3px;
+    background: var(--orange);
+    transition: width 0.35s ease;
+  }
+
+  .service-card:hover { background: var(--dark-3); }
+  .service-card:hover::before { width: 100%; }
+
+  .service-card-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(249,115,22,0.08);
+    line-height: 1;
+    position: absolute;
+    top: 1rem; right: 1.5rem;
+    transition: color 0.35s;
+  }
+
+  .service-card:hover .service-card-num {
+    color: rgba(249,115,22,0.15);
+  }
+
+  .service-icon-wrap {
+    width: 50px; height: 50px;
+    background: rgba(249,115,22,0.1);
+    border: 1px solid rgba(249,115,22,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    transition: background 0.35s, border-color 0.35s;
+  }
+
+  .service-card:hover .service-icon-wrap {
+    background: rgba(249,115,22,0.2);
+    border-color: var(--orange);
+  }
+
+  .service-card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .service-card-desc {
+    font-size: 0.82rem;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  .service-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1.2rem;
+  }
+
+  .tag {
+    font-size: 0.62rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--orange);
+    background: rgba(249,115,22,0.08);
+    border: 1px solid rgba(249,115,22,0.15);
+    padding: 0.2rem 0.6rem;
+  }
+
+  /* ─── WHY US ─── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .why-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .why-card {
+    background: var(--dark);
+    padding: 1.8rem 1.5rem;
+    border: 1px solid rgba(249,115,22,0.05);
+    transition: border-color 0.3s;
+  }
+
+  .why-card:hover { border-color: rgba(249,115,22,0.25); }
+
+  .why-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .why-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+  }
+
+  .why-desc {
+    font-size: 0.78rem;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  /* Testimonial card */
+  .testi-card {
+    background: var(--dark-3);
+    border: 1px solid rgba(249,115,22,0.1);
+    padding: 2.5rem;
+    position: relative;
+  }
+
+  .testi-card::before {
+    content: '"';
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 8rem;
+    color: var(--orange);
+    opacity: 0.15;
+    position: absolute;
+    top: 0; left: 1.5rem;
+    line-height: 1;
+  }
+
+  .testi-text {
+    font-size: 1rem;
+    color: var(--gray-light);
+    line-height: 1.8;
+    font-style: italic;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    padding-top: 2rem;
+  }
+
+  .testi-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .testi-avatar {
+    width: 40px; height: 40px;
+    background: var(--orange);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #000;
+  }
+
+  .testi-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .testi-role {
+    font-size: 0.72rem;
+    color: var(--gray);
+  }
+
+  /* ─── REALIZATIONS ─── */
+  .reals-section {
+    background: var(--dark-2);
+    padding: 6rem 2rem;
+  }
+
+  .reals-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .reals-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    grid-template-rows: 280px 280px;
+    gap: 4px;
+    margin-top: 3rem;
+  }
+
+  .real-item {
+    position: relative;
+    overflow: hidden;
+    background: var(--dark-4);
+    cursor: pointer;
+  }
+
+  .real-item:first-child {
+    grid-row: 1 / 3;
+  }
+
+  .real-placeholder {
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-size: 3rem;
+    color: rgba(249,115,22,0.15);
+    background: linear-gradient(135deg, var(--dark-4), var(--dark-3));
+    transition: all 0.35s;
+  }
+
+  .real-item:hover .real-placeholder {
+    color: rgba(249,115,22,0.35);
+  }
+
+  .real-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    padding: 2rem 1.5rem 1.2rem;
+    transform: translateY(100%);
+    transition: transform 0.35s;
+  }
+
+  .real-item:hover .real-label { transform: translateY(0); }
+
+  .real-label-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .real-label-sub {
+    font-size: 0.72rem;
+    color: var(--orange);
+    margin-top: 0.2rem;
+  }
+
+  .real-tag-corner {
+    position: absolute;
+    top: 1rem; left: 1rem;
+    background: var(--orange);
+    color: #000;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+  }
+
+  /* ─── CTA BAND ─── */
+  .cta-section {
+    background: var(--orange);
+    padding: 5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: 'POLAM';
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20rem;
+    color: rgba(0,0,0,0.08);
+    position: absolute;
+    right: -2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .cta-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+  }
+
+  .cta-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: #000;
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+
+  .cta-sub {
+    font-size: 0.95rem;
+    color: rgba(0,0,0,0.65);
+    margin-top: 0.5rem;
+    font-weight: 300;
+  }
+
+  .btn-dark {
+    background: #000;
+    color: var(--white);
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 1rem 2.5rem;
+    border: none;
+    cursor: pointer;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: all 0.25s;
+    white-space: nowrap;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-dark:hover {
+    background: var(--dark-3);
+    transform: translateY(-2px);
+  }
+
+  /* ─── CONTACT ─── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-info-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .contact-icon {
+    width: 44px; height: 44px;
+    background: rgba(249,115,22,0.1);
+    border: 1px solid rgba(249,115,22,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .contact-label {
+    font-size: 0.68rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 0.25rem;
+  }
+
+  .contact-value {
+    font-size: 0.92rem;
+    color: var(--white);
+    font-weight: 400;
+  }
+
+  /* Contact form */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  .form-input {
+    background: var(--dark-3);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-bottom-color: rgba(249,115,22,0.3);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    outline: none;
+    transition: border-color 0.25s, background 0.25s;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .form-input:focus {
+    border-color: var(--orange);
+    background: var(--dark-4);
+  }
+
+  textarea.form-input {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #050505;
+    border-top: 1px solid rgba(249,115,22,0.1);
+    padding: 3rem 2rem 2rem;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    margin-bottom: 2rem;
+  }
+
+  .footer-brand-desc {
+    font-size: 0.82rem;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-top: 1rem;
+    font-weight: 300;
+    max-width: 280px;
+  }
+
+  .footer-col-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1.2rem;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .footer-links a {
+    font-size: 0.82rem;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--white); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-copy {
+    font-size: 0.72rem;
+    color: var(--gray);
+  }
+
+  .footer-socials {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .social-btn {
+    width: 36px; height: 36px;
+    background: var(--dark-3);
+    border: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.25s;
+    color: var(--gray);
+    text-decoration: none;
+  }
+
+  .social-btn:hover {
+    background: var(--orange);
+    color: #000;
+    border-color: var(--orange);
+  }
+
+  /* ─── MOBILE MENU ─── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    width: 22px; height: 2px;
+    background: var(--white);
+    transition: all 0.3s;
+    display: block;
+  }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.98);
+    z-index: 99;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-menu a {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .mobile-menu a:hover { color: var(--orange); }
+
+  .mobile-close {
+    position: absolute;
+    top: 1.5rem; right: 2rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--gray);
+    background: none;
+    border: none;
+  }
+
+  /* ─── SCROLL INDICATOR ─── */
+  .scroll-line {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    animation: fadeUp 1s 0.8s ease both;
+  }
+
+  .scroll-text {
+    font-size: 0.6rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray);
+    writing-mode: horizontal-tb;
+  }
+
+  .scroll-bar {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--orange), transparent);
+    animation: scrollAnim 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollAnim {
+    0% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+    100% { opacity: 0; transform: scaleY(0); transform-origin: top; }
+  }
+
+  /* ─── PROGRESS BAR ─── */
+  #progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: var(--orange);
+    z-index: 200;
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    .hero-content { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .about-grid, .why-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .reals-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .real-item:first-child { grid-row: auto; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-links, .btn-nav { display: none; }
+    .hamburger { display: flex; }
+    .services-grid { grid-template-columns: 1fr; }
+    .why-cards { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1.5rem; }
+    .hero-ctas { flex-direction: column; }
+    .cta-inner { flex-direction: column; text-align: center; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    .reals-grid { grid-template-columns: 1fr; }
+    section { padding: 4rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="logo-mark">
+    <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="19" cy="19" r="17" stroke="#F97316" stroke-width="1.5" stroke-dasharray="3 2"/>
+      <circle cx="19" cy="19" r="17" stroke="#333" stroke-width="1.5" stroke-dasharray="3 2" stroke-dashoffset="5"/>
+      <line x1="12" y1="19" x2="26" y2="19" stroke="#F97316" stroke-width="1.5"/>
+      <line x1="19" y1="12" x2="19" y2="14" stroke="#F97316" stroke-width="1.5"/>
+      <line x1="19" y1="24" x2="19" y2="26" stroke="#F97316" stroke-width="1.5"/>
+      <circle cx="27" cy="19" r="2" fill="#F97316"/>
+      <circle cx="19" cy="13" r="2" fill="#F97316"/>
+      <circle cx="19" cy="25" r="2" fill="#F97316"/>
+      <line x1="12" y1="15" x2="16" y2="15" stroke="#888" stroke-width="1"/>
+      <line x1="12" y1="23" x2="16" y2="23" stroke="#888" stroke-width="1"/>
+    </svg>
+    <div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:0.1em;line-height:1;">POLAM SARL</div>
+      <div style="font-size:0.55rem;color:var(--orange);font-family:'Syne',sans-serif;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;line-height:1.2;">Fondé en 2019</div>
+    </div>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#realisations">Réalisations</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <button class="btn-nav" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Demander un devis</button>
+
+  <div class="hamburger" id="ham" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+  <a href="#about" onclick="toggleMenu()">À Propos</a>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#realisations" onclick="toggleMenu()">Réalisations</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" style="padding-top:7rem;padding-bottom:4rem;max-width:100%;">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-diagonal"></div>
+
+  <div class="hero-content">
+    <div>
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Depuis 2019 · Yaoundé, Cameroun
+      </div>
+
+      <h1 class="hero-title">
+        <span class="line-orange">La Tech</span><br>
+        <span>& l'Innovation</span><br>
+        <span class="line-outline">À votre portée</span>
+      </h1>
+
+      <p class="hero-sub">
+        Installations électriques, énergies solaires, vidéosurveillance, maintenance informatique et biomédicale. Des équipes jeunes, compétentes, engagées pour vos projets.
+      </p>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">6+</div>
+          <div class="stat-label">Années d'expérience</div>
+        </div>
+        <div style="width:1px;background:rgba(255,255,255,0.08);"></div>
+        <div class="stat-item">
+          <div class="stat-num">8</div>
+          <div class="stat-label">Domaines d'expertise</div>
+        </div>
+        <div style="width:1px;background:rgba(255,255,255,0.08);"></div>
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Satisfaction client</div>
+        </div>
+      </div>
+
+      <div class="hero-ctas">
+        <a href="#services" class="btn-primary">Découvrir nos services</a>
+        <a href="#contact" class="btn-ghost">Nous contacter</a>
+      </div>
+    </div>
+
+    <!-- Right visual panel -->
+    <div class="hero-visual">
+      <div class="circuit-card">
+        <div style="font-family:'Syne',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--orange);margin-bottom:1.2rem;">Nos expertises clés</div>
+        <div class="service-grid-mini">
+          <div class="service-mini-item">
+            <div class="service-mini-icon">⚡</div>
+            <div class="service-mini-name">Électricité</div>
+            <div class="service-mini-desc">Installation & maintenance électrique bâtiment</div>
+          </div>
+          <div class="service-mini-item">
+            <div class="service-mini-icon">☀️</div>
+            <div class="service-mini-name">Énergie Solaire</div>
+            <div class="service-mini-desc">Panneaux photovoltaïques & solutions durables</div>
+          </div>
+          <div class="service-mini-item">
+            <div class="service-mini-icon">📹</div>
+            <div class="service-mini-name">Vidéosurveillance</div>
+            <div class="service-mini-desc">Caméras de sécurité & contrôle d'accès</div>
+          </div>
+          <div class="service-mini-item">
+            <div class="service-mini-icon">🖥️</div>
+            <div class="service-mini-name">Informatique</div>
+            <div class="service-mini-desc">Dépannage & maintenance systèmes IT</div>
+          </div>
+        </div>
+
+        <div style="margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid rgba(249,115,22,0.1);display:flex;align-items:center;gap:1rem;">
+          <div style="font-size:0.75rem;color:var(--gray);">Répondez à votre besoin en</div>
+          <div style="background:rgba(249,115,22,0.1);border:1px solid rgba(249,115,22,0.3);padding:0.25rem 0.75rem;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--orange);letter-spacing:0.05em;">24-48H</div>
+        </div>
+
+        <div class="hero-accent-tag">Rêvez → Nous Réalisons</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="scroll-line">
+    <span class="scroll-text">Défiler</span>
+    <div class="scroll-bar"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-band" aria-hidden="true">
+  <div class="marquee-track" id="marquee">
+    <span class="marquee-item">Électricité Générale <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Énergie Solaire <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Vidéosurveillance <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Alarme Technique <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Contrôle d'Accès <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Réseaux Télécommunication <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Maintenance Biomédicale <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Commerce Import-Export <span class="marquee-sep">◆</span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">Électricité Générale <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Énergie Solaire <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Vidéosurveillance <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Alarme Technique <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Contrôle d'Accès <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Réseaux Télécommunication <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Maintenance Biomédicale <span class="marquee-sep">◆</span></span>
+    <span class="marquee-item">Commerce Import-Export <span class="marquee-sep">◆</span></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-tag">À propos de nous</div>
+      <div class="about-year-badge">2019</div>
+      <h2 class="section-title" style="margin-top:-0.5rem;">Rêvez et<br><span style="color:var(--orange);">nous réalisons</span></h2>
+      <p class="about-text" style="margin-top:1.5rem;">
+        POLAM SARL est une entreprise camerounaise spécialisée dans l'étude, la conception, la mise en œuvre et la maintenance des installations électriques domestiques, domotiques et tertiaires, ainsi que des énergies renouvelables.
+      </p>
+      <p class="about-text" style="margin-top:1rem;">
+        Avec des équipes jeunes dotées d'une forte conscience professionnelle, nous nous engageons à livrer des solutions technologiques innovantes, durables et accessibles à toute notre clientèle.
+      </p>
+      <div style="margin-top:2rem;display:flex;gap:0.75rem;flex-wrap:wrap;">
+        <div class="tag">Prestation de services</div>
+        <div class="tag">Commerce général</div>
+        <div class="tag">Import-Export</div>
+        <div class="tag">Domotique</div>
+        <div class="tag">Biomédical</div>
+      </div>
+    </div>
+
+    <div class="about-pillars">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <div>
+          <div class="pillar-title">Expertise Technique</div>
+          <div class="pillar-desc">Des techniciens qualifiés, formés aux dernières normes et technologies du secteur électrotechnique.</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <div>
+          <div class="pillar-title">Solutions Durables</div>
+          <div class="pillar-desc">Nous prônons des installations pérennes et respectueuses de l'environnement, notamment via l'énergie solaire.</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <div>
+          <div class="pillar-title">Réactivité & Proximité</div>
+          <div class="pillar-desc">Intervention rapide sur site, service client disponible et accompagnement de A à Z pour chaque projet.</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">04</div>
+        <div>
+          <div class="pillar-title">Innovation Continue</div>
+          <div class="pillar-desc">Intégration des technologies modernes : domotique, IoT, systèmes de surveillance intelligents.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<div class="services-section" id="services">
+  <div class="services-inner">
+    <div class="services-header">
+      <div>
+        <div class="section-tag">Ce que nous faisons</div>
+        <h2 class="section-title">Nos <span style="color:var(--orange);">Services</span></h2>
+      </div>
+      <p style="max-width:320px;font-size:0.85rem;color:var(--gray);line-height:1.6;text-align:right;">
+        Une gamme complète de solutions technologiques pour particuliers, entreprises et institutions.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-card-num">01</div>
+        <div class="service-icon-wrap">⚡</div>
+        <div class="service-card-title">Installation Électrique</div>
+        <p class="service-card-desc">Étude, conception et mise en œuvre d'installations électriques domestiques, tertiaires et industrielles. Câblage, mise aux normes et dépannage.</p>
+        <div class="service-card-tags">
+          <span class="tag">Bâtiment</span>
+          <span class="tag">Domotique</span>
+          <span class="tag">Normes CEI</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-num">02</div>
+        <div class="service-icon-wrap">☀️</div>
+        <div class="service-card-title">Énergie Solaire</div>
+        <p class="service-card-desc">Installation de panneaux solaires photovoltaïques, solutions hybrides et autonomes, entretien et maintenance pour une énergie propre et durable.</p>
+        <div class="service-card-tags">
+          <span class="tag">Photovoltaïque</span>
+          <span class="tag">Autonomie</span>
+          <span class="tag">Green Tech</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-num">03</div>
+        <div class="service-icon-wrap">📹</div>
+        <div class="service-card-title">Vidéosurveillance & Accès</div>
+        <p class="service-card-desc">Déploiement de systèmes de caméras IP, contrôle d'accès biométrique, alarme technique et interphonie pour sécuriser vos locaux.</p>
+        <div class="service-card-tags">
+          <span class="tag">CCTV</span>
+          <span class="tag">Biométrie</span>
+          <span class="tag">Alarme</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-num">04</div>
+        <div class="service-icon-wrap">📡</div>
+        <div class="service-card-title">Réseaux & Télécoms</div>
+        <p class="service-card-desc">Installation et configuration de réseaux LAN/WAN, câblage structuré, fibre optique, VoIP et systèmes de communication d'entreprise.</p>
+        <div class="service-card-tags">
+          <span class="tag">LAN/WAN</span>
+          <span class="tag">Fibre</span>
+          <span class="tag">VoIP</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-num">05</div>
+        <div class="service-icon-wrap">🖥️</div>
+        <div class="service-card-title">Maintenance Informatique</div>
+        <p class="service-card-desc">Dépannage, réparation et maintenance préventive de parcs informatiques, serveurs, imprimantes et équipements bureautiques.</p>
+        <div class="service-card-tags">
+          <span class="tag">Dépannage</span>
+          <span class="tag">Serveurs</span>
+          <span class="tag">Préventif</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card-num">06</div>
+        <div class="service-icon-wrap">🏥</div>
+        <div class="service-card-title">Maintenance Biomédicale</div>
+        <p class="service-card-desc">Entretien et réparation d'équipements médicaux électroniques en milieu hospitalier et clinique, dans le respect des normes sanitaires.</p>
+        <div class="service-card-tags">
+          <span class="tag">Médical</span>
+          <span class="tag">Électronique</span>
+          <span class="tag">Normes ISO</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="why-grid">
+    <div>
+      <div class="section-tag">Pourquoi nous choisir</div>
+      <h2 class="section-title">Votre projet,<br><span style="color:var(--orange);">notre priorité</span></h2>
+      <p style="margin-top:1.5rem;font-size:0.9rem;color:var(--gray-light);line-height:1.8;font-weight:300;margin-bottom:2rem;">
+        Depuis 2019, POLAM SARL construit sa réputation sur la qualité d'exécution, la ponctualité et le sérieux de ses équipes. Chaque chantier est traité avec la même rigueur, qu'il s'agisse d'une maison individuelle ou d'un complexe industriel.
+      </p>
+
+      <div class="testi-card">
+        <div class="testi-text">
+          "POLAM SARL a réalisé l'installation électrique complète de notre bâtiment en un temps record. Professionnel, ponctuel et le résultat est impeccable. Je recommande vivement !"
+        </div>
+        <div class="testi-author">
+          <div class="testi-avatar">JK</div>
+          <div>
+            <div class="testi-name">Jean-Paul Kouam</div>
+            <div class="testi-role">Directeur, Entreprise KD Construction · Yaoundé</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="why-cards">
+      <div class="why-card">
+        <div class="why-icon">🎯</div>
+        <div class="why-title">Expertise Certifiée</div>
+        <div class="why-desc">Techniciens qualifiés avec formations continue aux normes locales et internationales.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">⚙️</div>
+        <div class="why-title">Matériel Premium</div>
+        <div class="why-desc">Équipements de marques reconnues garantissant durabilité et performance optimale.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">⏱️</div>
+        <div class="why-title">Délais Respectés</div>
+        <div class="why-desc">Planification rigoureuse et suivi de chantier pour une livraison dans les temps impartis.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🛡️</div>
+        <div class="why-title">Garantie & SAV</div>
+        <div class="why-desc">Service après-vente réactif et garantie sur toutes nos interventions pour votre tranquillité.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💡</div>
+        <div class="why-title">Innovation</div>
+        <div class="why-desc">Intégration des technologies modernes : domotique, smart building, IoT applicatif.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🤝</div>
+        <div class="why-title">Accompagnement</div>
+        <div class="why-desc">Conseil personnalisé de l'étude jusqu'à la réception finale de votre installation.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RÉALISATIONS -->
+<div class="reals-section" id="realisations">
+  <div class="reals-inner">
+    <div class="section-tag">Nos chantiers</div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
+      <h2 class="section-title">Réalisations <span style="color:var(--orange);">sur le terrain</span></h2>
+      <a href="#contact" class="btn-ghost" style="font-size:0.72rem;">Voir tous les projets →</a>
+    </div>
+
+    <div class="reals-grid">
+      <div class="real-item" style="background:linear-gradient(135deg,#1a1a1a,#0f0f0f);">
+        <div class="real-placeholder" style="font-size:5rem;">🏗️</div>
+        <div class="real-tag-corner">En cours</div>
+        <div class="real-label">
+          <div class="real-label-title">Chantier Résidentiel</div>
+          <div class="real-label-sub">Prédallage & câblage préencastré · 2025</div>
+        </div>
+      </div>
+
+      <div class="real-item" style="background:linear-gradient(135deg,#1a120a,#0f0a00);">
+        <div class="real-placeholder">🏛️</div>
+        <div class="real-tag-corner">Livré</div>
+        <div class="real-label">
+          <div class="real-label-title">Électrification Salle Polyvalente</div>
+          <div class="real-label-sub">Éclairage & lustre décoratif · 2024</div>
+        </div>
+      </div>
+
+      <div class="real-item" style="background:linear-gradient(135deg,#0a1a0a,#000f00);">
+        <div class="real-placeholder">☀️</div>
+        <div class="real-tag-corner">Livré</div>
+        <div class="real-label">
+          <div class="real-label-title">Installation Solaire</div>
+          <div class="real-label-sub">Système hybride 5kW · 2024</div>
+        </div>
+      </div>
+
+      <div class="real-item" style="background:linear-gradient(135deg,#0a0a1a,#00000f);">
+        <div class="real-placeholder">📹</div>
+        <div class="real-tag-corner">Livré</div>
+        <div class="real-label">
+          <div class="real-label-title">Vidéosurveillance Entreprise</div>
+          <div class="real-label-sub">16 caméras IP + NVR · 2025</div>
+        </div>
+      </div>
+
+      <div class="real-item" style="background:linear-gradient(135deg,#1a1a0a,#0f0f00);">
+        <div class="real-placeholder">🔌</div>
+        <div class="real-tag-corner">Livré</div>
+        <div class="real-label">
+          <div class="real-label-title">Câblage Structuré</div>
+          <div class="real-label-sub">Réseau fibre + RJ45 · 2024</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA BAND -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <div>
+      <h2 class="cta-title">Un projet en tête ?<br>Parlons-en.</h2>
+      <p class="cta-sub">Devis gratuit · Réponse sous 24h · Intervention à Yaoundé et environs</p>
+    </div>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+      <a href="tel:+237698359954" class="btn-dark">📞 Appelez-nous</a>
+      <a href="#contact" class="btn-dark" style="background:rgba(0,0,0,0.15);color:#000;border:2px solid rgba(0,0,0,0.3);">Devis en ligne</a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div>
+      <div class="section-tag">Nous joindre</div>
+      <h2 class="section-title">Contactez<br><span style="color:var(--orange);">POLAM SARL</span></h2>
+      <p style="margin-top:1rem;font-size:0.9rem;color:var(--gray-light);line-height:1.7;font-weight:300;">
+        Décrivez-nous votre projet et nous vous recontacterons rapidement avec une estimation personnalisée.
+      </p>
+
+      <div class="contact-info-items">
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Téléphone / WhatsApp</div>
+            <div class="contact-value">698 359 954 · 674 180 413</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-value">polamsarl@gmail.com</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Localisation</div>
+            <div class="contact-value">Yaoundé, Cameroun</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <div class="contact-label">Disponibilité</div>
+            <div class="contact-value">Lun–Sam : 7h30–18h · Urgences 24/7</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div style="background:var(--dark-3);border:1px solid rgba(249,115,22,0.1);padding:2.5rem;position:relative;">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),transparent);"></div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;margin-bottom:1.5rem;">Demander un devis gratuit</div>
+
+        <form class="contact-form" onsubmit="handleForm(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Prénom *</label>
+              <input type="text" class="form-input" placeholder="Votre prénom" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Nom *</label>
+              <input type="text" class="form-input" placeholder="Votre nom" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email / Téléphone *</label>
+            <input type="text" class="form-input" placeholder="contact@example.com ou 6XX XXX XXX" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Type de service</label>
+            <select class="form-input" style="cursor:pointer;">
+              <option value="">Sélectionnez un service…</option>
+              <option>Installation électrique</option>
+              <option>Énergie solaire</option>
+              <option>Vidéosurveillance & contrôle d'accès</option>
+              <option>Réseaux & Télécommunication</option>
+              <option>Maintenance informatique</option>
+              <option>Maintenance biomédicale</option>
+              <option>Autre / Multiple</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Décrivez votre projet</label>
+            <textarea class="form-input" placeholder="Décrivez votre besoin, localisation, délai souhaité…"></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width:100%;clip-path:none;text-align:center;">
+            Envoyer la demande →
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+          <svg width="32" height="32" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="19" cy="19" r="17" stroke="#F97316" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <line x1="12" y1="19" x2="26" y2="19" stroke="#F97316" stroke-width="1.5"/>
+            <circle cx="27" cy="19" r="2" fill="#F97316"/>
+            <circle cx="19" cy="13" r="2" fill="#F97316"/>
+            <circle cx="19" cy="25" r="2" fill="#F97316"/>
+            <line x1="19" y1="12" x2="19" y2="14" stroke="#F97316" stroke-width="1.5"/>
+            <line x1="19" y1="24" x2="19" y2="26" stroke="#F97316" stroke-width="1.5"/>
+          </svg>
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.1em;">POLAM SARL</span>
+        </div>
+        <p class="footer-brand-desc">La technologie et l'innovation à votre portée. Spécialistes en installations électriques, énergies renouvelables et systèmes de sécurité au Cameroun depuis 2019.</p>
+        <div style="margin-top:1.5rem;padding:0.6rem 1rem;background:rgba(249,115,22,0.08);border-left:3px solid var(--orange);font-size:0.72rem;color:var(--orange);font-family:'Syne',sans-serif;font-weight:600;">
+          "Rêvez et nous réaliserons"
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="#about">À propos</a></li>
+          <li><a href="#services">Nos services</a></li>
+          <li><a href="#realisations">Réalisations</a></li>
+          <li><a href="#why">Pourquoi nous</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#">Électricité générale</a></li>
+          <li><a href="#">Énergie solaire</a></li>
+          <li><a href="#">Vidéosurveillance</a></li>
+          <li><a href="#">Réseaux & Télécoms</a></li>
+          <li><a href="#">Maintenance IT</a></li>
+          <li><a href="#">Biomédical</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="tel:+237698359954">698 359 954</a></li>
+          <li><a href="tel:+237674180413">674 180 413</a></li>
+          <li><a href="mailto:polamsarl@gmail.com">polamsarl@gmail.com</a></li>
+          <li style="color:var(--gray);font-size:0.82rem;margin-top:0.5rem;">Yaoundé, Cameroun</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 POLAM SARL · Tous droits réservés · RC N° — · Yaoundé, Cameroun</div>
+      <div class="footer-socials">
+        <a href="https://www.facebook.com/polamsarl" target="_blank" class="social-btn" title="Facebook">f</a>
+        <a href="https://www.linkedin.com/company/polam-sarl/" target="_blank" class="social-btn" title="LinkedIn" style="font-family:'Syne',sans-serif;font-weight:700;font-size:0.7rem;">in</a>
+        <a href="https://wa.me/237698359954" target="_blank" class="social-btn" title="WhatsApp">📱</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const st = window.scrollY;
+    const dh = document.documentElement.scrollHeight - window.innerHeight;
+    document.getElementById('progress-bar').style.width = (st / dh * 100) + '%';
+  });
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 60) {
+      nav.style.background = 'rgba(5,5,5,0.97)';
+      nav.style.padding = '0.8rem 2rem';
+    } else {
+      nav.style.background = 'rgba(10,10,10,0.85)';
+      nav.style.padding = '1.2rem 2rem';
+    }
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+    document.body.style.overflow = document.getElementById('mobile-menu').classList.contains('open') ? 'hidden' : '';
+  }
+
+  // Form handler
+  function handleForm(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = '✅ Demande envoyée !';
+    btn.style.background = '#16a34a';
+    btn.style.color = '#fff';
+    setTimeout(() => {
+      btn.textContent = 'Envoyer la demande →';
+      btn.style.background = '';
+      btn.style.color = '';
+      e.target.reset();
+    }, 3000);
+  }
+
+  // Intersection Observer for reveal animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card, .pillar, .why-card, .real-item, .contact-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>

@@ -1,155 +1,48 @@
-<!-- Navigation -->
-<style>
-    .language-toggle {
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        padding: 6px 10px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        transition: all 0.3s ease;
-    }
+<!-- Progress Bar -->
+<div id="progress-bar"></div>
 
-    .language-toggle:hover {
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(34, 197, 94, 0.3);
-    }
-
-    .language-option {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        padding: 6px 12px;
-        border-radius: 6px;
-        font-size: 13px;
-        font-weight: 600;
-        color: #a0a0a0;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    .language-option:hover {
-        color: #ffffff;
-        background: rgba(255, 255, 255, 0.05);
-    }
-
-    .language-option.active {
-        color: #22c55e;
-        background: rgba(34, 197, 94, 0.1);
-    }
-
-    .divider {
-        width: 1px;
-        height: 16px;
-        background: rgba(255, 255, 255, 0.1);
-    }
-</style>
-<nav class="fixed top-0 left-0 right-0 z-50" id="navbar">
-    <div class="container mx-auto px-6 py-4">
-        <div class="flex items-center justify-between">
-            <!-- Logo -->
-            <div class="flex items-center space-x-3">
-                <div class="w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
-                    <img src="{{ $siteLogo ? asset('storage/' . $siteLogo) : asset('media/img/logo.png') }}" alt="Logo CINV-CORSA">
-                </div>
-                <div>
-                    <h1 class="text-xl font-bold text-gray-800">{{ $siteName ? $siteName : "CINV-CORSA" }}</h1>
-                    <p class="text-xs text-gray-500">{{ $siteSlogan ? $siteSlogan : "Solutions Documentaires" }}</p>
-                </div>
-            </div>
-
-            <!-- Desktop Menu -->
-            <div class="hidden lg:flex items-center space-x-8">
-                <a id="menu_home" href="{{route('home')}}" class="text-gray-700 hover:text-green-600 font-medium transition">{{ __('home.home_link') }}</a>
-                <a id="menu_service" href="{{route('service')}}" class="text-gray-700 hover:text-green-600 font-medium transition">{{ __('home.service_link') }}</a>
-                <a id="menu_article" href="{{route('article')}}" class="text-gray-700 hover:text-green-600 font-medium transition">{{ __('home.article_link') }}</a>
-                <a id="menu_about" href="{{route('about')}}" class="text-gray-700 hover:text-green-600 font-medium transition">{{ __('home.about_link') }}</a>
-                <a id="menu_contact" href="{{route('contact')}}" class="text-gray-700 hover:text-green-600 font-medium transition">{{ __('home.contact_link') }}</a>
-                <div class="language-toggle">
-                    <div class="language-option {{ app()->getLocale() == 'fr' ? 'active' : '' }}"
-                        onclick="window.location.href='/lang/fr'">
-                        🇫🇷 <span>FR</span>
-                    </div>
-                    <span class="divider"></span>
-                    <div class="language-option {{ app()->getLocale() == 'en' ? 'active' : '' }}"
-                        onclick="window.location.href='/lang/en'">
-                        🇬🇧 <span>EN</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mobile Menu Button -->
-            <button id="mobile-btn" class="lg:hidden text-gray-700 focus:outline-none">
-                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
-        </div>
+<!-- NAV -->
+<nav id="navbar">
+  <div class="logo-mark">
+    <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="19" cy="19" r="17" stroke="#F97316" stroke-width="1.5" stroke-dasharray="3 2"/>
+      <circle cx="19" cy="19" r="17" stroke="#333" stroke-width="1.5" stroke-dasharray="3 2" stroke-dashoffset="5"/>
+      <line x1="12" y1="19" x2="26" y2="19" stroke="#F97316" stroke-width="1.5"/>
+      <line x1="19" y1="12" x2="19" y2="14" stroke="#F97316" stroke-width="1.5"/>
+      <line x1="19" y1="24" x2="19" y2="26" stroke="#F97316" stroke-width="1.5"/>
+      <circle cx="27" cy="19" r="2" fill="#F97316"/>
+      <circle cx="19" cy="13" r="2" fill="#F97316"/>
+      <circle cx="19" cy="25" r="2" fill="#F97316"/>
+      <line x1="12" y1="15" x2="16" y2="15" stroke="#888" stroke-width="1"/>
+      <line x1="12" y1="23" x2="16" y2="23" stroke="#888" stroke-width="1"/>
+    </svg>
+    <div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:0.1em;line-height:1;">POLAM SARL</div>
+      <div style="font-size:0.55rem;color:var(--orange);font-family:'Syne',sans-serif;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;line-height:1.2;">Fondé en 2019</div>
     </div>
-</nav>
+  </div>
 
-<!-- Mobile Menu Overlay -->
-<div class="mobile-overlay" id="mobile-overlay"></div>
+  <ul class="nav-links">
+    <li><a href="{{ route('home') }}">Accueil</a></li>
+    <li><a href="{{ route('about') }}">À propos</a></li>
+    <li><a href="{{ route('service') }}">Services</a></li>
+    <li><a href="{{ route('article') }}">Articles</a></li>
+    <li><a href="{{ route('contact') }}">Contact</a></li>
+  </ul>
+
+  <button class="btn-nav" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Demander un devis</button>
+
+  <div class="hamburger" id="ham" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
 
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobile-menu">
-    <button id="close-mobile" class="absolute top-6 right-6 text-gray-700">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-    </button>
-
-    <div class="mt-12 space-y-6">
-        <a id="mobile_menu_home" href="{{route('home')}}" class="block text-lg font-medium text-gray-700 hover:text-green-600">{{ __('home.home_link') }}</a>
-        <a id="mobile_menu_service" href="{{route('service')}}" class="block text-lg font-medium text-gray-700 hover:text-green-600">{{ __('home.service_link') }}</a>
-        <a id="mobile_menu_article" href="{{route('article')}}" class="block text-lg font-medium text-gray-700 hover:text-green-600">{{ __('home.article_link') }}</a>
-        <a id="mobile_menu_about" href="{{route('about')}}" class="block text-lg font-medium text-gray-700 hover:text-green-600">{{ __('home.about_link') }}</a>
-        <a id="mobile_menu_contact" href="{{route('contact')}}" class="block text-lg font-medium text-gray-700 hover:text-green-600">{{ __('home.contact_link') }}</a>
-    </div>
+  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+    <a href="{{ route('home') }}" onclick="toggleMenu()">Accueil</a>
+    <a href="{{ route('about') }}" onclick="toggleMenu()">À Propos</a>
+    <a href="{{ route('service') }}" onclick="toggleMenu()">Services</a>
+    <a href="{{ route('article') }}" onclick="toggleMenu()">Articles</a>
+    <a href="{{ route('contact') }}" onclick="toggleMenu()">Contact</a>
 </div>
-
-<script>
-    //script pour colorier le lien actif
-    /**
-     * Extrait le premier segment du chemin de l'URL
-     * @returns {string} Le premier argument (ex: "service", "articles") ou une chaîne vide
-     */
-    if (getFirstPathArgument() == "") {
-        // Cas spécial de la page d'accueil
-        let homeLink = document.getElementById("menu_home");
-        let homeMobileLink = document.getElementById("mobile_menu_home");
-        homeLink.classList.add("text-green-600");
-        homeLink.classList.remove("text-gray-700");
-        homeMobileLink.classList.add("text-green-600");
-        homeMobileLink.classList.remove("text-gray-700");
-
-    }
-    let linkId = "menu_" + getFirstPathArgument();
-    let mobileLinkId = "mobile_menu_" + getFirstPathArgument();
-    let activeLink = document.getElementById(linkId);
-    let activeMobileLink = document.getElementById(mobileLinkId);
-    if (activeLink) {
-        activeLink.classList.add("text-green-600");
-        activeLink.classList.remove("text-gray-700");
-    }
-    if (activeMobileLink) {
-        activeMobileLink.classList.add("text-green-600");
-        activeMobileLink.classList.remove("text-gray-700");
-    }
-    function getFirstPathArgument() {
-        // window.location.pathname retourne tout ce qui est après le domaine (ex: "/articles/2")
-        const path = window.location.pathname;
-
-        // On découpe par le caractère "/"
-        // .split('/') sur "/articles/2" donne ["", "articles", "2"]
-        const segments = path.split('/');
-
-        // Le premier argument se trouve toujours à l'index 1
-        // car le chemin commence par un "/" (créant un index 0 vide)
-        return segments[1] || "";
-    }
-
-</script>

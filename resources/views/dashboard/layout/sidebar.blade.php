@@ -51,15 +51,6 @@ $logout = function () {
             Contacts
         </a>
         @endif
-        @if(auth()->user()->permissions['laws'] === 'full' || auth()->user()->permissions['laws'] === 'view')
-        <a id="menu_laws" href="{{ route('laws.index_admin') }}"
-            class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all">
-            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-            </svg>
-            Lois
-        </a>
-        @endif
         @if(auth()->user()->permissions['profile'] === 'full' || auth()->user()->permissions['profile'] === 'view')
         <a id="menu_users" href="{{ route('user.index') }}"
             class="flex items-center px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl transition-all">

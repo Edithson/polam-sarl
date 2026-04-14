@@ -4,46 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>CINV-CORSA</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>POLAM SARL – La Technologie & L'Innovation à Votre Portée</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
     <link rel="icon" href="{{ $siteLogo ? asset('storage/' . $siteLogo) : asset('media/img/logo.png') }}" type="image/png">
 
-    @vite(['resources/css/home.css', 'resources/js/app.js'])
+    @vite(['resources/css/home.css', 'resources/js/home.js'])
 
     <script>
-    window.translations = {
-        slides: [
-            {
-                tag: {!! json_encode(__('home.slide1_tag')) !!},
-                title: {!! json_encode(__('home.slide1_title')) !!},
-                desc: {!! json_encode(__('home.slide1_desc')) !!}
-            },
-            {
-                tag: {!! json_encode(__('home.slide2_tag')) !!},
-                title: {!! json_encode(__('home.slide2_title')) !!},
-                desc: {!! json_encode(__('home.slide2_desc')) !!}
-            },
-            {
-                tag: {!! json_encode(__('home.slide3_tag')) !!},
-                title: {!! json_encode(__('home.slide3_title')) !!},
-                desc: {!! json_encode(__('home.slide3_desc')) !!}
-            }
-        ]
-    };
-</script>
+        window.translations = {
+            slides: [
+                {
+                    tag: {!! json_encode(__('home.slide1_tag')) !!},
+                    title: {!! json_encode(__('home.slide1_title')) !!},
+                    desc: {!! json_encode(__('home.slide1_desc')) !!}
+                },
+                {
+                    tag: {!! json_encode(__('home.slide2_tag')) !!},
+                    title: {!! json_encode(__('home.slide2_title')) !!},
+                    desc: {!! json_encode(__('home.slide2_desc')) !!}
+                },
+                {
+                    tag: {!! json_encode(__('home.slide3_tag')) !!},
+                    title: {!! json_encode(__('home.slide3_title')) !!},
+                    desc: {!! json_encode(__('home.slide3_desc')) !!}
+                }
+            ]
+        };
+    </script>
 
 </head>
 <body>
-    <section>
-        @include('home.layout.nav_bar')
-        <div class="w-full h-auto mt-0 mb-0">
-            @yield('content')
-        </div>
-        @include('home.layout.footer')
-    </section>
+    @include('home.layout.nav_bar')
+    @yield('content')
+    @include('home.layout.footer')
 
     <div class="fixed bottom-18 right-2 flex flex-col gap-4 z-50">
         {{-- centrer le texte dans le bouton --}}

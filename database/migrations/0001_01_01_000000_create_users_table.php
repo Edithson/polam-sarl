@@ -17,7 +17,12 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->json('permissions')->nullable();
+            $table->json('permissions')->nullable()->default(json_encode([
+                'profile' => 'author',
+                'contacts' => 'none',
+                'articles' => 'author',
+                'settings' => 'none',
+            ]));
             $table->rememberToken();
             $table->timestamps();
         });
