@@ -7,9 +7,10 @@
        HERO
     ══════════════════════════════════════ */
     .about-hero {
-        background: linear-gradient(135deg, #111111 0%, #1A1208 60%, #2A1A00 100%);
+        background: linear-gradient(135deg, var(--dark-2) 0%, var(--dark-3) 60%, var(--dark) 100%);
         position: relative;
         overflow: hidden;
+        transition: background 0.3s ease;
     }
 
     .about-hero::before {
@@ -17,8 +18,8 @@
         position: absolute;
         inset: 0;
         background-image:
-            linear-gradient(rgba(244,123,32,0.06) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(244,123,32,0.06) 1px, transparent 1px);
+            linear-gradient(color-mix(in srgb, var(--orange) 6%, transparent) 1px, transparent 1px),
+            linear-gradient(90deg, color-mix(in srgb, var(--orange) 6%, transparent) 1px, transparent 1px);
         background-size: 52px 52px;
     }
 
@@ -28,7 +29,7 @@
         top: -200px; right: -200px;
         width: 600px; height: 600px;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(244,123,32,0.12) 0%, transparent 65%);
+        background: radial-gradient(circle, color-mix(in srgb, var(--orange) 12%, transparent) 0%, transparent 65%);
         pointer-events: none;
     }
 
@@ -37,9 +38,10 @@
     ══════════════════════════════════════ */
     .badge-tag {
         display: inline-flex; align-items: center; gap: 0.45rem;
+        font-family: 'Syne', sans-serif;
         font-size: 0.72rem; font-weight: 700; letter-spacing: 0.13em;
-        text-transform: uppercase; color: #F47B20;
-        border: 1.5px solid rgba(244,123,32,0.35);
+        text-transform: uppercase; color: var(--orange);
+        border: 1.5px solid color-mix(in srgb, var(--orange) 35%, transparent);
         border-radius: 50px; padding: 0.32rem 0.85rem;
         margin-bottom: 0.9rem; width: fit-content;
     }
@@ -49,9 +51,9 @@
        STAT COUNTER
     ══════════════════════════════════════ */
     .stat-number {
-        font-size: 3rem;
-        font-weight: 800;
-        background: linear-gradient(135deg, #F47B20, #FF9A45);
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 4rem;
+        background: linear-gradient(135deg, var(--orange-deep), var(--orange-glow));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -59,16 +61,16 @@
     }
 
     @media (max-width: 768px) {
-        .stat-number { font-size: 2.2rem; }
+        .stat-number { font-size: 3rem; }
     }
 
     /* ══════════════════════════════════════
        VALUE CARDS
     ══════════════════════════════════════ */
     .value-card {
-        background: #1A1A1A;
-        border: 1px solid rgba(255,255,255,0.07);
-        border-radius: 20px;
+        background: var(--dark-3);
+        border: 1px solid color-mix(in srgb, var(--white) 7%, transparent);
+        border-radius: 4px; /* Raccord avec le style Tech */
         padding: 2rem;
         transition: all 0.4s ease;
         position: relative;
@@ -79,8 +81,8 @@
         content: '';
         position: absolute;
         top: 0; left: 0;
-        width: 100%; height: 4px;
-        background: linear-gradient(90deg, #F47B20, #FF9A45);
+        width: 100%; height: 3px;
+        background: linear-gradient(90deg, var(--orange), var(--orange-glow));
         transform: scaleX(0);
         transform-origin: left;
         transition: transform 0.4s ease;
@@ -88,16 +90,16 @@
 
     .value-card:hover {
         transform: translateY(-8px);
-        border-color: rgba(244,123,32,0.3);
-        box-shadow: 0 20px 48px rgba(244,123,32,0.12);
+        border-color: color-mix(in srgb, var(--orange) 30%, transparent);
+        box-shadow: 0 20px 48px color-mix(in srgb, var(--orange) 12%, transparent);
     }
 
     .value-card:hover::before { transform: scaleX(1); }
 
     .value-icon {
-        width: 68px; height: 68px;
-        background: rgba(244,123,32,0.12);
-        border-radius: 16px;
+        width: 60px; height: 60px;
+        background: color-mix(in srgb, var(--orange) 12%, transparent);
+        border: 1px solid color-mix(in srgb, var(--orange) 20%, transparent);
         display: flex; align-items: center; justify-content: center;
         font-size: 1.9rem;
         margin-bottom: 1rem;
@@ -106,7 +108,8 @@
 
     .value-card:hover .value-icon {
         transform: scale(1.1) rotate(-5deg);
-        background: #F47B20;
+        background: color-mix(in srgb, var(--orange) 20%, transparent);
+        border-color: var(--orange);
     }
 
     /* ══════════════════════════════════════
@@ -121,9 +124,8 @@
         content: '';
         position: absolute;
         left: 50%; transform: translateX(-50%);
-        width: 3px; height: 100%;
-        background: linear-gradient(180deg, #F47B20 0%, rgba(244,123,32,0.1) 100%);
-        border-radius: 2px;
+        width: 2px; height: 100%;
+        background: linear-gradient(180deg, var(--orange) 0%, color-mix(in srgb, var(--orange) 10%, transparent) 100%);
     }
 
     .timeline-item {
@@ -137,23 +139,23 @@
 
     .timeline-content {
         width: calc(50% - 2.5rem);
-        background: #1A1A1A;
-        border: 1px solid rgba(255,255,255,0.07);
+        background: var(--dark-3);
+        border: 1px solid color-mix(in srgb, var(--white) 7%, transparent);
         padding: 1.8rem 2rem;
-        border-radius: 18px;
+        border-radius: 4px;
         transition: all 0.3s ease;
     }
 
     .timeline-item:hover .timeline-content {
         transform: translateY(-6px);
-        border-color: rgba(244,123,32,0.3);
-        box-shadow: 0 16px 40px rgba(244,123,32,0.1);
+        border-color: color-mix(in srgb, var(--orange) 30%, transparent);
+        box-shadow: 0 16px 40px color-mix(in srgb, var(--orange) 10%, transparent);
     }
 
     .timeline-dot {
-        width: 20px; height: 20px;
-        background: #111111;
-        border: 4px solid #F47B20;
+        width: 16px; height: 16px;
+        background: var(--dark-2);
+        border: 3px solid var(--orange);
         border-radius: 50%;
         position: absolute;
         left: 50%; transform: translateX(-50%);
@@ -162,32 +164,27 @@
     }
 
     .timeline-item:nth-child(even) .timeline-dot {
-        border-color: #FF9A45;
-        background: #F47B20;
+        border-color: var(--orange-glow);
+        background: var(--orange);
     }
 
     .timeline-item:hover .timeline-dot {
         transform: translateX(-50%) scale(1.5);
-        box-shadow: 0 0 20px rgba(244,123,32,0.6);
+        box-shadow: 0 0 20px color-mix(in srgb, var(--orange) 60%, transparent);
     }
-
-    .timeline-year-odd  { color: #F47B20; }
-    .timeline-year-even { color: #FF9A45; }
 
     /* ══════════════════════════════════════
        EXPERTISE BARS
     ══════════════════════════════════════ */
     .expertise-bar {
-        background: rgba(255,255,255,0.07);
-        border-radius: 10px;
-        height: 12px;
+        background: color-mix(in srgb, var(--white) 7%, transparent);
+        height: 6px; /* Plus fin, plus tech */
         overflow: hidden;
     }
 
     .expertise-fill {
         height: 100%;
-        background: linear-gradient(90deg, #F47B20, #FF9A45);
-        border-radius: 10px;
+        background: linear-gradient(90deg, var(--orange-deep), var(--orange-glow));
         transition: width 1.5s ease-in-out;
     }
 
@@ -195,9 +192,9 @@
        MISSION VISUAL CARD
     ══════════════════════════════════════ */
     .mission-visual {
-        background: linear-gradient(135deg, #1A1A1A, #242424);
-        border: 1px solid rgba(244,123,32,0.18);
-        border-radius: 24px;
+        background: linear-gradient(135deg, var(--dark-3), var(--dark-4));
+        border: 1px solid color-mix(in srgb, var(--orange) 18%, transparent);
+        border-radius: 4px;
         overflow: hidden;
     }
 
@@ -205,7 +202,7 @@
        CTA
     ══════════════════════════════════════ */
     .cta-section {
-        background: linear-gradient(135deg, #E8640A 0%, #C55E00 100%);
+        background: var(--orange);
         position: relative; overflow: hidden;
     }
 
@@ -213,32 +210,36 @@
         content: '';
         position: absolute; inset: 0;
         background-image:
-            linear-gradient(rgba(255,255,255,0.055) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.055) 1px, transparent 1px);
+            linear-gradient(color-mix(in srgb, var(--white) 15%, transparent) 1px, transparent 1px),
+            linear-gradient(90deg, color-mix(in srgb, var(--white) 15%, transparent) 1px, transparent 1px);
         background-size: 44px 44px;
+        opacity: 0.5;
     }
 
     /* ══════════════════════════════════════
-       BTN PRIMARY
+       BTN PRIMARY (Adapté au thème)
     ══════════════════════════════════════ */
     .btn-primary {
-        background: #F47B20;
-        color: white;
+        background: var(--orange);
+        color: #000;
+        font-family: 'Syne', sans-serif;
+        font-weight: 700;
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
         padding: 0.9rem 2.2rem;
-        border-radius: 50px;
-        font-weight: 600;
-        font-size: 0.92rem;
-        transition: all 0.3s ease;
-        display: inline-flex; align-items: center; gap: 0.4rem;
+        border: none;
+        cursor: pointer;
+        clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+        transition: all 0.25s;
         text-decoration: none;
-        box-shadow: 0 4px 18px rgba(244,123,32,0.35);
-        letter-spacing: 0.02em;
+        display: inline-flex; align-items: center; gap: 0.4rem;
     }
 
     .btn-primary:hover {
-        background: #111111;
+        background: var(--orange-glow);
         transform: translateY(-2px);
-        box-shadow: 0 10px 30px rgba(244,123,32,0.3);
+        box-shadow: 0 8px 30px color-mix(in srgb, var(--orange) 40%, transparent);
     }
 
     /* ══════════════════════════════════════
@@ -247,13 +248,12 @@
     .stat-card {
         text-align: center;
         padding: 1.75rem 1rem;
-        border-radius: 18px;
-        background: #1A1A1A;
-        border: 1px solid rgba(255,255,255,0.06);
+        background: var(--dark-3);
+        border: 1px solid color-mix(in srgb, var(--white) 6%, transparent);
         transition: border-color 0.3s, transform 0.3s;
     }
     .stat-card:hover {
-        border-color: rgba(244,123,32,0.3);
+        border-color: color-mix(in srgb, var(--orange) 30%, transparent);
         transform: translateY(-4px);
     }
 
@@ -261,25 +261,25 @@
        TEAM CARD
     ══════════════════════════════════════ */
     .team-card {
-        background: #1A1A1A;
-        border: 1px solid rgba(255,255,255,0.07);
-        border-radius: 20px;
+        background: var(--dark-3);
+        border: 1px solid color-mix(in srgb, var(--white) 7%, transparent);
+        border-radius: 4px;
         overflow: hidden;
         transition: all 0.35s ease;
     }
 
     .team-card:hover {
-        border-color: rgba(244,123,32,0.35);
+        border-color: color-mix(in srgb, var(--orange) 35%, transparent);
         transform: translateY(-6px);
-        box-shadow: 0 20px 48px rgba(244,123,32,0.1);
+        box-shadow: 0 20px 48px color-mix(in srgb, var(--orange) 10%, transparent);
     }
 
     .team-avatar {
         height: 180px;
-        background: linear-gradient(135deg, #242424, #1A1A1A);
+        background: linear-gradient(135deg, var(--dark-4), var(--dark-3));
         display: flex; align-items: center; justify-content: center;
         font-size: 4rem;
-        border-bottom: 1px solid rgba(244,123,32,0.12);
+        border-bottom: 1px solid color-mix(in srgb, var(--orange) 12%, transparent);
     }
 
     /* ══════════════════════════════════════
@@ -300,65 +300,56 @@
 </style>
 
 {{-- ════════════════════════════════════════
-     HERO  — via include (remplace par le include d'origine si existant)
-     Sinon : hero inline ci-dessous
+     HERO
 ════════════════════════════════════════ --}}
-<section class="about-hero pt-36 pb-24 text-white">
+<section class="about-hero pt-36 pb-24 text-[var(--white)]">
     <div class="container mx-auto px-6 relative z-10">
         <div class="max-w-3xl">
             <div class="badge-tag">À propos de nous</div>
-            <h1 class="text-5xl md:text-6xl font-black mb-6 leading-tight" style="letter-spacing:-0.03em">
+            <h1 class="text-5xl md:text-6xl font-display mb-6 leading-tight tracking-wide">
                 La technologie et<br>
-                <span style="color:#F47B20">l'innovation à votre portée</span>
+                <span class="text-[var(--orange)]">l'innovation à votre portée</span>
             </h1>
-            <p class="text-xl leading-relaxed max-w-2xl" style="color:rgba(255,255,255,0.62)">
+            <p class="text-[var(--gray-light)] text-lg md:text-xl font-light leading-relaxed max-w-2xl mb-10">
                 Depuis 2019, POLAM SARL accompagne particuliers, entreprises et institutions avec des solutions
                 électriques, énergétiques et technologiques de qualité — conçues, installées et maintenues
                 par une équipe jeune, qualifiée et engagée.
             </p>
-            <div class="flex flex-wrap gap-4 mt-10">
+            <div class="flex flex-wrap gap-4">
                 <a href="#mission" class="btn-primary">Notre mission →</a>
                 <a href="{{ route('contact') }}"
-                   class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20
-                          text-white/80 font-600 text-sm hover:border-[#F47B20] hover:text-[#F47B20]
-                          transition-all duration-300">
+                   class="btn-ghost" style="padding: 0.9rem 2.2rem;">
                     Nous contacter
                 </a>
             </div>
         </div>
     </div>
-    {{-- Deco SVG circuit --}}
-    <div class="absolute bottom-0 right-0 opacity-5 pointer-events-none hidden lg:block" style="width:420px">
-        <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="200" cy="200" r="190" stroke="#F47B20" stroke-width="1.5"/>
-            <circle cx="200" cy="200" r="120" stroke="#F47B20" stroke-width="1" stroke-dasharray="6 6"/>
-            <line x1="200" y1="10" x2="200" y2="390" stroke="#F47B20" stroke-width="1"/>
-            <line x1="10" y1="200" x2="390" y2="200" stroke="#F47B20" stroke-width="1"/>
-            <circle cx="200" cy="10" r="5" fill="#F47B20"/>
-            <circle cx="390" cy="200" r="5" fill="#F47B20"/>
-            <path d="M200 80 L300 140 L300 200 L360 200" stroke="#F47B20" stroke-width="1.5"/>
-            <circle cx="360" cy="200" r="7" fill="none" stroke="#F47B20" stroke-width="2"/>
-            <circle cx="200" cy="200" r="18" fill="#F47B20" fill-opacity="0.2" stroke="#F47B20" stroke-width="2"/>
-            <circle cx="200" cy="200" r="6" fill="#F47B20"/>
-        </svg>
+
+    {{-- Deco SVG circuit (Adapté au thème) --}}
+    <div class="absolute bottom-0 right-0 opacity-10 pointer-events-none hidden lg:block text-[var(--orange)]" style="width:420px">
+        <div class="text-center">
+            <img src="{{ asset('media/img/autres/about.png') }}" alt="">
+        </div>
     </div>
 </section>
 
 {{-- ════════════════════════════════════════
      QUI SOMMES-NOUS + STATS
 ════════════════════════════════════════ --}}
-<section class="py-20 bg-[#111111] text-white">
+<section class="py-20 bg-[var(--dark)] text-[var(--white)] transition-colors duration-300">
     <div class="container mx-auto px-6">
 
         {{-- Intro --}}
         <div class="max-w-4xl mx-auto mb-16">
-            <div class="badge-tag mx-auto" style="margin-bottom:1.2rem">Qui sommes-nous ?</div>
-            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center" style="letter-spacing:-0.025em">
-                Une entreprise camerounaise au cœur de la <span style="color:#F47B20">technologie</span>
+            <div class="flex justify-center mb-6">
+                <div class="badge-tag">Qui sommes-nous ?</div>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-display tracking-wide mb-8 text-center">
+                Une entreprise camerounaise au cœur de la <span class="text-[var(--orange)]">technologie</span>
             </h2>
-            <div class="space-y-5 text-lg leading-relaxed" style="color:rgba(255,255,255,0.6)">
+            <div class="space-y-5 text-[var(--gray-light)] text-lg leading-relaxed font-light">
                 <p>
-                    <strong style="color:#F47B20">POLAM SARL</strong> est une entreprise spécialisée dans l'étude,
+                    <strong class="text-[var(--white)] font-semibold">POLAM SARL</strong> est une entreprise spécialisée dans l'étude,
                     la conception, la mise en œuvre et la maintenance des installations électriques domestiques,
                     de la domotique, des systèmes tertiaires ainsi que des énergies renouvelables.
                 </p>
@@ -369,13 +360,11 @@
                 </p>
                 <p>
                     Nous intervenons sur six pôles complémentaires :
-                    <strong style="color:#F47B20">installation électrique</strong>,
-                    <strong style="color:#F47B20">énergie solaire</strong>,
-                    <strong style="color:#F47B20">vidéosurveillance & alarme</strong>,
-                    <strong style="color:#F47B20">réseaux & télécommunications</strong>,
-                    <strong style="color:#F47B20">maintenance & biomédical</strong>,
-                    et <strong style="color:#F47B20">commerce général / import-export</strong> —
-                    garantissant une approche intégrée et cohérente pour chaque client.
+                    <strong class="text-[var(--orange)] font-semibold">installation électrique</strong>,
+                    <strong class="text-[var(--orange)] font-semibold">énergie solaire</strong>,
+                    <strong class="text-[var(--orange)] font-semibold">vidéosurveillance & alarme</strong>,
+                    <strong class="text-[var(--orange)] font-semibold">réseaux & télécommunications</strong>,
+                    <strong class="text-[var(--orange)] font-semibold">maintenance IT & biomédicale</strong>.
                 </p>
             </div>
         </div>
@@ -383,20 +372,20 @@
         {{-- Stats --}}
         <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
             <div class="stat-card">
-                <div class="stat-number" data-target="5">0</div>
-                <p class="font-semibold mt-2 text-sm uppercase tracking-wider" style="color:rgba(255,255,255,0.5)">Années d'Expérience</p>
+                <div class="stat-number" data-target="6">0</div>
+                <p class="font-heading font-bold mt-2 text-xs uppercase tracking-widest text-[var(--gray)]">Années d'Expérience</p>
             </div>
             <div class="stat-card">
                 <div class="stat-number" data-target="6">0</div>
-                <p class="font-semibold mt-2 text-sm uppercase tracking-wider" style="color:rgba(255,255,255,0.5)">Pôles de Services</p>
+                <p class="font-heading font-bold mt-2 text-xs uppercase tracking-widest text-[var(--gray)]">Pôles de Services</p>
             </div>
             <div class="stat-card">
                 <div class="stat-number" data-target="100">0</div>
-                <p class="font-semibold mt-2 text-sm uppercase tracking-wider" style="color:rgba(255,255,255,0.5)">% Engagement Client</p>
+                <p class="font-heading font-bold mt-2 text-xs uppercase tracking-widest text-[var(--gray)]">% Engagement Client</p>
             </div>
             <div class="stat-card">
                 <div class="stat-number" data-target="360">0</div>
-                <p class="font-semibold mt-2 text-sm uppercase tracking-wider" style="color:rgba(255,255,255,0.5)">° Accompagnement</p>
+                <p class="font-heading font-bold mt-2 text-xs uppercase tracking-widest text-[var(--gray)]">° Accompagnement</p>
             </div>
         </div>
     </div>
@@ -405,32 +394,27 @@
 {{-- ════════════════════════════════════════
      MISSION & VISION
 ════════════════════════════════════════ --}}
-<section id="mission" class="py-20 bg-[#0D0D0D] text-white">
-    <div class="container mx-auto px-6">
+<section id="mission" class="py-20 bg-[var(--dark-2)] text-[var(--white)] transition-colors duration-300">
+    <div class="container mx-auto px-6 max-w-7xl">
         <div class="grid lg:grid-cols-2 gap-14 items-center">
             <div class="order-2 lg:order-1">
                 <div class="badge-tag">Notre mission</div>
-                <h2 class="text-3xl md:text-4xl font-bold mb-6" style="letter-spacing:-0.025em">
-                    Rendre la technologie <span style="color:#F47B20">accessible à tous</span>
+                <h2 class="text-3xl md:text-4xl font-display tracking-wide mb-6">
+                    Rendre la technologie <br><span class="text-[var(--orange)]">accessible à tous</span>
                 </h2>
-                <p class="text-lg leading-relaxed mb-5" style="color:rgba(255,255,255,0.6)">
-                    <strong style="color:#F47B20">POLAM SARL</strong> s'engage à transformer vos projets
+                <p class="text-[var(--gray-light)] font-light text-lg leading-relaxed mb-5">
+                    <strong class="text-[var(--white)] font-semibold">POLAM SARL</strong> s'engage à transformer vos projets
                     technologiques en réalités fiables et durables — en combinant expertise technique,
                     réactivité terrain et solutions sur mesure adaptées au contexte camerounais.
                 </p>
-                <p class="text-lg leading-relaxed mb-8" style="color:rgba(255,255,255,0.6)">
-                    Nous accompagnons chaque client — particulier, PME ou grande institution — avec la même
-                    rigueur et le même engagement, de la conception à la livraison clé en main.
-                </p>
 
                 {{-- Vision --}}
-                <div class="p-5 rounded-2xl mb-6"
-                     style="background:rgba(244,123,32,0.08);border:1px solid rgba(244,123,32,0.2)">
-                    <div class="flex items-start gap-3">
-                        <span style="font-size:1.5rem;flex-shrink:0">🔭</span>
+                <div class="p-6 mt-8 border-l-2 border-[var(--orange)] bg-[color-mix(in_srgb,var(--orange)_5%,transparent)]">
+                    <div class="flex items-start gap-4">
+                        <span class="text-3xl">🔭</span>
                         <div>
-                            <h4 class="font-bold text-white mb-1">Notre Vision</h4>
-                            <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,0.55)">
+                            <h4 class="font-heading font-bold text-[var(--white)] mb-2 uppercase tracking-wide text-sm">Notre Vision</h4>
+                            <p class="text-sm font-light text-[var(--gray-light)] leading-relaxed">
                                 Devenir la référence incontournable en solutions électriques et technologiques
                                 au Cameroun, reconnue pour la qualité, l'innovation et la proximité client.
                             </p>
@@ -438,16 +422,15 @@
                     </div>
                 </div>
 
-                <a href="{{ route('contact') }}" class="btn-primary">Démarrer un projet →</a>
+                <div class="mt-8">
+                    <a href="{{ route('contact') }}" class="btn-primary">Démarrer un projet →</a>
+                </div>
             </div>
 
             <div class="order-1 lg:order-2">
-                <div class="mission-visual w-full h-96 flex items-center justify-center p-4 shadow-2xl">
-                    {{-- Remplacer par : <img class="w-full h-full rounded-2xl object-cover" src="{{ asset('media/img/about/mission.jpg') }}" alt="Mission POLAM SARL"> --}}
+                <div class="mission-visual w-full h-96 flex items-center justify-center p-4 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
                     <div class="text-center">
-                        <div class="text-8xl mb-4">⚡</div>
-                        <p class="font-bold text-lg" style="color:#F47B20;letter-spacing:0.08em;text-transform:uppercase">POLAM SARL</p>
-                        <p class="text-sm mt-1" style="color:rgba(255,255,255,0.35)">La technologie et l'innovation à votre portée</p>
+                        <img src="{{ asset('media/img/autres/about.png') }}" alt="">
                     </div>
                 </div>
             </div>
@@ -458,23 +441,23 @@
 {{-- ════════════════════════════════════════
      NOS VALEURS
 ════════════════════════════════════════ --}}
-<section class="py-20 bg-[#111111] text-white">
-    <div class="container mx-auto px-6">
-        <div class="text-center mb-14">
-            <div class="badge-tag mx-auto">Nos valeurs</div>
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-2" style="letter-spacing:-0.03em">
-                Ce qui nous <span style="color:#F47B20">anime</span>
+<section class="py-20 bg-[var(--dark)] text-[var(--white)] transition-colors duration-300">
+    <div class="container mx-auto px-6 max-w-7xl">
+        <div class="text-center mb-16">
+            <div class="flex justify-center mb-4"><div class="badge-tag">Nos valeurs</div></div>
+            <h2 class="text-4xl md:text-5xl font-display tracking-wide">
+                Ce qui nous <span class="text-[var(--orange)]">anime</span>
             </h2>
-            <p class="text-lg mt-4 max-w-2xl mx-auto" style="color:rgba(255,255,255,0.5)">
-                Les principes qui guident chacune de nos interventions au quotidien
+            <p class="text-[var(--gray-light)] text-lg mt-4 max-w-2xl mx-auto font-light">
+                Les principes qui guident chacune de nos interventions au quotidien.
             </p>
         </div>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="value-card">
                 <div class="value-icon">🎯</div>
-                <h3 class="text-xl font-bold text-white mb-3">Excellence</h3>
-                <p class="leading-relaxed text-sm" style="color:rgba(255,255,255,0.55)">
+                <h3 class="text-lg font-heading font-bold text-[var(--white)] mb-3 uppercase tracking-wide">Excellence</h3>
+                <p class="font-light text-sm text-[var(--gray-light)] leading-relaxed">
                     Chaque installation, chaque intervention reflète notre exigence de qualité supérieure.
                     Nous ne livrons pas un projet tant que les standards ne sont pas atteints.
                 </p>
@@ -482,8 +465,8 @@
 
             <div class="value-card">
                 <div class="value-icon">🤝</div>
-                <h3 class="text-xl font-bold text-white mb-3">Engagement Client</h3>
-                <p class="leading-relaxed text-sm" style="color:rgba(255,255,255,0.55)">
+                <h3 class="text-lg font-heading font-bold text-[var(--white)] mb-3 uppercase tracking-wide">Engagement Client</h3>
+                <p class="font-light text-sm text-[var(--gray-light)] leading-relaxed">
                     Votre satisfaction est notre mesure de succès. Nous construisons des relations durables
                     basées sur la confiance, l'écoute et l'accompagnement personnalisé.
                 </p>
@@ -491,8 +474,8 @@
 
             <div class="value-card">
                 <div class="value-icon">🔒</div>
-                <h3 class="text-xl font-bold text-white mb-3">Fiabilité</h3>
-                <p class="leading-relaxed text-sm" style="color:rgba(255,255,255,0.55)">
+                <h3 class="text-lg font-heading font-bold text-[var(--white)] mb-3 uppercase tracking-wide">Fiabilité</h3>
+                <p class="font-light text-sm text-[var(--gray-light)] leading-relaxed">
                     Nos installations sont conçues pour durer. Nous travaillons avec des équipements
                     certifiés et respectons scrupuleusement les normes techniques en vigueur.
                 </p>
@@ -500,8 +483,8 @@
 
             <div class="value-card">
                 <div class="value-icon">💡</div>
-                <h3 class="text-xl font-bold text-white mb-3">Innovation</h3>
-                <p class="leading-relaxed text-sm" style="color:rgba(255,255,255,0.55)">
+                <h3 class="text-lg font-heading font-bold text-[var(--white)] mb-3 uppercase tracking-wide">Innovation</h3>
+                <p class="font-light text-sm text-[var(--gray-light)] leading-relaxed">
                     Nous intégrons les technologies les plus récentes — domotique, énergie solaire,
                     réseaux intelligents — pour proposer des solutions toujours en avance.
                 </p>
@@ -509,8 +492,8 @@
 
             <div class="value-card">
                 <div class="value-icon">🇨🇲</div>
-                <h3 class="text-xl font-bold text-white mb-3">Ancrage Local</h3>
-                <p class="leading-relaxed text-sm" style="color:rgba(255,255,255,0.55)">
+                <h3 class="text-lg font-heading font-bold text-[var(--white)] mb-3 uppercase tracking-wide">Ancrage Local</h3>
+                <p class="font-light text-sm text-[var(--gray-light)] leading-relaxed">
                     Enracinés au Cameroun, nous comprenons les réalités du terrain local et adaptons
                     chaque solution aux contraintes et opportunités spécifiques du marché africain.
                 </p>
@@ -518,8 +501,8 @@
 
             <div class="value-card">
                 <div class="value-icon">⚖️</div>
-                <h3 class="text-xl font-bold text-white mb-3">Intégrité</h3>
-                <p class="leading-relaxed text-sm" style="color:rgba(255,255,255,0.55)">
+                <h3 class="text-lg font-heading font-bold text-[var(--white)] mb-3 uppercase tracking-wide">Intégrité</h3>
+                <p class="font-light text-sm text-[var(--gray-light)] leading-relaxed">
                     Honnêteté, transparence et éthique professionnelle sont au cœur de toutes nos
                     actions. Nous disons ce que nous faisons, et faisons ce que nous disons.
                 </p>
@@ -531,30 +514,25 @@
 {{-- ════════════════════════════════════════
      NOTRE HISTOIRE — TIMELINE
 ════════════════════════════════════════ --}}
-<section class="py-20 bg-[#0D0D0D] text-white">
-    <div class="container mx-auto px-6">
+<section class="py-20 bg-[var(--dark-2)] text-[var(--white)] transition-colors duration-300">
+    <div class="container mx-auto px-6 max-w-7xl">
         <div class="text-center mb-16">
-            <div class="badge-tag mx-auto">Notre histoire</div>
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-2" style="letter-spacing:-0.03em">
-                Un parcours <span style="color:#F47B20">marqué</span> par la croissance
+            <div class="flex justify-center mb-4"><div class="badge-tag">Notre histoire</div></div>
+            <h2 class="text-4xl md:text-5xl font-display tracking-wide">
+                Un parcours <span class="text-[var(--orange)]">marqué</span> par la croissance
             </h2>
-            <p class="text-lg mt-4 max-w-2xl mx-auto" style="color:rgba(255,255,255,0.5)">
-                De la création à aujourd'hui, une trajectoire portée par l'ambition et l'innovation
-            </p>
         </div>
 
-        <div class="timeline max-w-5xl mx-auto">
-
+        <div class="timeline max-w-4xl mx-auto">
             {{-- 2019 --}}
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <h3 class="text-2xl font-bold mb-2 timeline-year-odd">2019</h3>
-                    <h4 class="text-lg font-semibold text-white mb-3">Création de POLAM SARL</h4>
-                    <p style="color:rgba(255,255,255,0.55);font-size:0.92rem;line-height:1.65">
+                    <h3 class="font-display text-3xl text-[var(--orange)] mb-2 tracking-widest">2019</h3>
+                    <h4 class="font-heading font-bold text-sm uppercase tracking-wide text-[var(--white)] mb-3">Création de POLAM SARL</h4>
+                    <p class="text-[var(--gray-light)] font-light text-sm leading-relaxed">
                         Lancement des activités à Yaoundé avec une vision claire : rendre la technologie
-                        accessible à tous. Premiers contrats en installation électrique résidentielle
-                        et fourniture de matériel électronique.
+                        accessible à tous. Premiers contrats en installation électrique résidentielle.
                     </p>
                 </div>
             </div>
@@ -563,26 +541,11 @@
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <h3 class="text-2xl font-bold mb-2 timeline-year-even">2020</h3>
-                    <h4 class="text-lg font-semibold text-white mb-3">Élargissement du portefeuille</h4>
-                    <p style="color:rgba(255,255,255,0.55);font-size:0.92rem;line-height:1.65">
+                    <h3 class="font-display text-3xl text-[var(--orange)] mb-2 tracking-widest">2020</h3>
+                    <h4 class="font-heading font-bold text-sm uppercase tracking-wide text-[var(--white)] mb-3">Élargissement du portefeuille</h4>
+                    <p class="text-[var(--gray-light)] font-light text-sm leading-relaxed">
                         Extension aux installations d'énergie solaire et aux systèmes de vidéosurveillance.
-                        Premiers contrats tertiaires avec des PME locales. Démarrage de l'activité
-                        import-export de matériel technologique.
-                    </p>
-                </div>
-            </div>
-
-            {{-- 2021 --}}
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3 class="text-2xl font-bold mb-2 timeline-year-odd">2021</h3>
-                    <h4 class="text-lg font-semibold text-white mb-3">Réseaux & Domotique</h4>
-                    <p style="color:rgba(255,255,255,0.55);font-size:0.92rem;line-height:1.65">
-                        Intégration des solutions réseaux et télécommunications ainsi que de la domotique
-                        résidentielle. L'équipe s'agrandit avec des techniciens spécialisés en
-                        infrastructure réseau et systèmes intelligents.
+                        Premiers contrats tertiaires avec des PME locales.
                     </p>
                 </div>
             </div>
@@ -591,26 +554,11 @@
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <h3 class="text-2xl font-bold mb-2 timeline-year-even">2022</h3>
-                    <h4 class="text-lg font-semibold text-white mb-3">Pôle Biomédical & Informatique</h4>
-                    <p style="color:rgba(255,255,255,0.55);font-size:0.92rem;line-height:1.65">
+                    <h3 class="font-display text-3xl text-[var(--orange)] mb-2 tracking-widest">2022</h3>
+                    <h4 class="font-heading font-bold text-sm uppercase tracking-wide text-[var(--white)] mb-3">Pôle Biomédical & Informatique</h4>
+                    <p class="text-[var(--gray-light)] font-light text-sm leading-relaxed">
                         Lancement du service de maintenance des équipements biomédicaux et informatiques.
-                        Partenariats avec des établissements de santé et des institutions publiques.
                         Consolidation de la présence sur Yaoundé et Douala.
-                    </p>
-                </div>
-            </div>
-
-            {{-- 2023 --}}
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3 class="text-2xl font-bold mb-2 timeline-year-odd">2023</h3>
-                    <h4 class="text-lg font-semibold text-white mb-3">Consolidation & Croissance</h4>
-                    <p style="color:rgba(255,255,255,0.55);font-size:0.92rem;line-height:1.65">
-                        POLAM SARL s'affirme comme un acteur incontournable du secteur technologique
-                        au Cameroun. Portfolio complet de 6 pôles de services, clients dans le
-                        résidentiel, le tertiaire, la santé et les institutions.
                     </p>
                 </div>
             </div>
@@ -619,16 +567,14 @@
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
-                    <h3 class="text-2xl font-bold mb-2 timeline-year-even">2025 & au-delà</h3>
-                    <h4 class="text-lg font-semibold text-white mb-3">Innovation & Expansion</h4>
-                    <p style="color:rgba(255,255,255,0.55);font-size:0.92rem;line-height:1.65">
+                    <h3 class="font-display text-3xl text-[var(--orange)] mb-2 tracking-widest">2025</h3>
+                    <h4 class="font-heading font-bold text-sm uppercase tracking-wide text-[var(--white)] mb-3">Innovation & Expansion</h4>
+                    <p class="text-[var(--gray-light)] font-light text-sm leading-relaxed">
                         Intégration de solutions de monitoring intelligent et d'automatisation avancée.
-                        Vision d'expansion vers d'autres villes du Cameroun et ouverture vers les
-                        marchés d'Afrique centrale.
+                        Vision d'expansion vers les marchés d'Afrique centrale.
                     </p>
                 </div>
             </div>
-
         </div>
     </div>
 </section>
@@ -636,124 +582,33 @@
 {{-- ════════════════════════════════════════
      EXPERTISE (BARRES)
 ════════════════════════════════════════ --}}
-<section class="py-20 bg-[#111111] text-white">
-    <div class="container mx-auto px-6">
-        <div class="text-center mb-14">
-            <div class="badge-tag mx-auto">Notre expertise</div>
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-2" style="letter-spacing:-0.03em">
-                Des compétences <span style="color:#F47B20">reconnues</span>
+<section class="py-20 bg-[var(--dark)] text-[var(--white)] transition-colors duration-300">
+    <div class="container mx-auto px-6 max-w-7xl">
+        <div class="text-center mb-16">
+            <div class="flex justify-center mb-4"><div class="badge-tag">Notre expertise</div></div>
+            <h2 class="text-4xl md:text-5xl font-display tracking-wide">
+                Des compétences <span class="text-[var(--orange)]">reconnues</span>
             </h2>
-            <p class="text-lg mt-4 max-w-2xl mx-auto" style="color:rgba(255,255,255,0.5)">
-                Un niveau de maîtrise technique élevé dans chacun de nos domaines d'intervention
-            </p>
         </div>
 
-        <div class="max-w-4xl mx-auto space-y-8">
+        <div class="max-w-3xl mx-auto space-y-8">
+            @foreach([
+                ['name' => 'Installation Électrique', 'val' => 95],
+                ['name' => 'Énergie Solaire', 'val' => 92],
+                ['name' => 'Vidéosurveillance & Sécurité', 'val' => 90],
+                ['name' => 'Réseaux & Télécommunications', 'val' => 88],
+                ['name' => 'Maintenance IT & Biomédicale', 'val' => 85]
+            ] as $skill)
             <div>
-                <div class="flex justify-between items-center mb-3">
-                    <h3 class="text-lg font-semibold text-white">Installation Électrique</h3>
-                    <span class="font-bold text-lg" style="color:#F47B20">95%</span>
+                <div class="flex justify-between items-end mb-2">
+                    <h3 class="font-heading font-bold text-sm uppercase tracking-wide text-[var(--white)]">{{ $skill['name'] }}</h3>
+                    <span class="font-display text-2xl text-[var(--orange)] leading-none">{{ $skill['val'] }}%</span>
                 </div>
                 <div class="expertise-bar">
-                    <div class="expertise-fill" data-width="95" style="width:0%"></div>
+                    <div class="expertise-fill" data-width="{{ $skill['val'] }}" style="width:0%"></div>
                 </div>
             </div>
-            <div>
-                <div class="flex justify-between items-center mb-3">
-                    <h3 class="text-lg font-semibold text-white">Énergie Solaire & Renouvelable</h3>
-                    <span class="font-bold text-lg" style="color:#F47B20">92%</span>
-                </div>
-                <div class="expertise-bar">
-                    <div class="expertise-fill" data-width="92" style="width:0%"></div>
-                </div>
-            </div>
-            <div>
-                <div class="flex justify-between items-center mb-3">
-                    <h3 class="text-lg font-semibold text-white">Vidéosurveillance & Sécurité</h3>
-                    <span class="font-bold text-lg" style="color:#F47B20">90%</span>
-                </div>
-                <div class="expertise-bar">
-                    <div class="expertise-fill" data-width="90" style="width:0%"></div>
-                </div>
-            </div>
-            <div>
-                <div class="flex justify-between items-center mb-3">
-                    <h3 class="text-lg font-semibold text-white">Réseaux & Télécommunications</h3>
-                    <span class="font-bold text-lg" style="color:#F47B20">88%</span>
-                </div>
-                <div class="expertise-bar">
-                    <div class="expertise-fill" data-width="88" style="width:0%"></div>
-                </div>
-            </div>
-            <div>
-                <div class="flex justify-between items-center mb-3">
-                    <h3 class="text-lg font-semibold text-white">Maintenance & Biomédical</h3>
-                    <span class="font-bold text-lg" style="color:#F47B20">85%</span>
-                </div>
-                <div class="expertise-bar">
-                    <div class="expertise-fill" data-width="85" style="width:0%"></div>
-                </div>
-            </div>
-            <div>
-                <div class="flex justify-between items-center mb-3">
-                    <h3 class="text-lg font-semibold text-white">Domotique & Automatisation</h3>
-                    <span class="font-bold text-lg" style="color:#F47B20">82%</span>
-                </div>
-                <div class="expertise-bar">
-                    <div class="expertise-fill" data-width="82" style="width:0%"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-{{-- ════════════════════════════════════════
-     ÉQUIPE
-════════════════════════════════════════ --}}
-<section class="py-20 bg-[#0D0D0D] text-white">
-    <div class="container mx-auto px-6">
-        <div class="text-center mb-14">
-            <div class="badge-tag mx-auto">L'équipe</div>
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-2" style="letter-spacing:-0.03em">
-                Des talents <span style="color:#F47B20">engagés</span>
-            </h2>
-            <p class="text-lg mt-4 max-w-xl mx-auto" style="color:rgba(255,255,255,0.5)">
-                Une équipe jeune, formée et passionnée par la technologie et l'innovation
-            </p>
-        </div>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="team-card">
-                <div class="team-avatar">👨‍💼</div>
-                <div class="p-5">
-                    <h4 class="font-bold text-white text-lg mb-1">Direction Générale</h4>
-                    <p class="text-xs uppercase tracking-widest mb-3" style="color:#F47B20;letter-spacing:0.1em">Management</p>
-                    <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,0.5)">Pilotage stratégique et développement commercial de l'entreprise.</p>
-                </div>
-            </div>
-            <div class="team-card">
-                <div class="team-avatar">👨‍🔧</div>
-                <div class="p-5">
-                    <h4 class="font-bold text-white text-lg mb-1">Techniciens Électriciens</h4>
-                    <p class="text-xs uppercase tracking-widest mb-3" style="color:#F47B20;letter-spacing:0.1em">Installation & Maintenance</p>
-                    <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,0.5)">Spécialistes certifiés en installation et mise en conformité électrique.</p>
-                </div>
-            </div>
-            <div class="team-card">
-                <div class="team-avatar">☀️</div>
-                <div class="p-5">
-                    <h4 class="font-bold text-white text-lg mb-1">Équipe Énergie Solaire</h4>
-                    <p class="text-xs uppercase tracking-widest mb-3" style="color:#F47B20;letter-spacing:0.1em">Énergie Renouvelable</p>
-                    <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,0.5)">Experts en dimensionnement et déploiement de systèmes photovoltaïques.</p>
-                </div>
-            </div>
-            <div class="team-card">
-                <div class="team-avatar">🌐</div>
-                <div class="p-5">
-                    <h4 class="font-bold text-white text-lg mb-1">Techniciens Réseaux</h4>
-                    <p class="text-xs uppercase tracking-widest mb-3" style="color:#F47B20;letter-spacing:0.1em">Télécoms & Sécurité</p>
-                    <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,0.5)">Spécialistes des infrastructures réseau, vidéosurveillance et contrôle d'accès.</p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -762,41 +617,32 @@
      CTA FINAL
 ════════════════════════════════════════ --}}
 <section class="cta-section py-24">
-    <div class="container mx-auto px-6 relative z-10 text-center">
-        <h2 class="text-4xl md:text-5xl font-black mb-5 text-white" style="letter-spacing:-0.03em">
+    <div class="container mx-auto px-6 relative z-10 text-center max-w-4xl">
+        <h2 class="text-4xl md:text-5xl font-display text-[#000] mb-6 tracking-wide">
             Prêt à concrétiser votre projet ?
         </h2>
-        <p class="text-xl mb-10 max-w-2xl mx-auto" style="color:rgba(255,255,255,0.82)">
+        <p class="text-lg md:text-xl font-light mb-10 text-[#000]/80">
             Contactez-nous dès aujourd'hui pour une consultation gratuite et découvrez comment
             POLAM SARL peut transformer vos ambitions technologiques en réalité.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="{{ route('contact') }}"
-               class="bg-white text-[#E8640A] px-10 py-4 rounded-full font-bold text-lg
-                      hover:bg-[#111] hover:text-white transition-all duration-300 inline-block shadow-xl">
-                Demander un devis gratuit
+               class="bg-[#000] text-[var(--white)] px-10 py-5 font-heading font-bold text-sm uppercase tracking-widest hover:bg-[var(--dark-2)] transition-all duration-300" style="clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);">
+                Demander un devis
             </a>
             <a href="{{ route('service') }}"
-               class="bg-transparent border-2 border-white text-white px-10 py-4 rounded-full font-bold text-lg
-                      hover:bg-white hover:text-[#E8640A] transition-all duration-300 inline-block">
-                Voir nos services
+               class="bg-transparent border border-[#000]/30 text-[#000] px-10 py-5 font-heading font-bold text-sm uppercase tracking-widest hover:bg-[#000]/10 transition-all duration-300" style="clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);">
+                Nos services
             </a>
         </div>
-        <p class="mt-8 text-sm" style="color:rgba(255,255,255,0.6)">
-            Ou appelez-nous directement :
-            <a href="tel:+237699070353" class="underline hover:text-white transition-colors font-semibold">
-                +237 699 070 353
-            </a>
-            /
-            <a href="tel:+237674180413" class="underline hover:text-white transition-colors font-semibold">
-                +237 674 180 413
-            </a>
+        <p class="mt-10 font-heading font-bold text-sm uppercase tracking-widest text-[#000]/60">
+            Ligne directe : <a href="tel:+237698359954" class="text-[#000] hover:underline">+237 698 359 954</a>
         </p>
     </div>
 </section>
 
 <script>
-    // ── Smooth scroll
+    // ── Les scripts JS d'origine restent identiques, l'animation des stats et du scroll fonctionne parfaitement ──
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
@@ -808,7 +654,6 @@
         });
     });
 
-    // ── Animated counter
     function animateCounter(element) {
         const target  = parseInt(element.getAttribute('data-target'));
         const duration = 2000;
@@ -826,7 +671,6 @@
         }, 16);
     }
 
-    // ── Intersection Observer global
     const observerOptions = { threshold: 0.2, rootMargin: '0px 0px -50px 0px' };
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -846,7 +690,6 @@
     document.querySelectorAll('.stat-number').forEach(el => observer.observe(el));
     document.querySelectorAll('.expertise-fill').forEach(el => observer.observe(el));
 
-    // ── Timeline reveal
     const timelineObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -864,7 +707,6 @@
         timelineObserver.observe(item);
     });
 
-    // ── Value cards reveal
     const valueObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {

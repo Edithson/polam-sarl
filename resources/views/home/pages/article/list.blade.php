@@ -7,27 +7,29 @@
        GLOBAL
     ══════════════════════════════════════ */
     .blog-page {
-        background: #111111;
-        color: #ffffff;
+        background: var(--dark);
+        color: var(--white);
         min-height: 100vh;
+        transition: background 0.3s ease, color 0.3s ease;
     }
 
     /* ══════════════════════════════════════
        HERO
     ══════════════════════════════════════ */
     .blog-hero {
-        background: #111111;
+        background: var(--dark-2);
         position: relative;
         overflow: hidden;
-        padding: 9rem 0 5rem;
+        padding: 10rem 0 5rem;
+        border-bottom: 1px solid color-mix(in srgb, var(--orange) 15%, transparent);
     }
 
     .blog-hero::before {
         content: '';
         position: absolute; inset: 0;
         background-image:
-            linear-gradient(rgba(244,123,32,0.055) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(244,123,32,0.055) 1px, transparent 1px);
+            linear-gradient(color-mix(in srgb, var(--orange) 6%, transparent) 1px, transparent 1px),
+            linear-gradient(90deg, color-mix(in srgb, var(--orange) 6%, transparent) 1px, transparent 1px);
         background-size: 52px 52px;
     }
 
@@ -36,7 +38,7 @@
         top: -180px; right: -180px;
         width: 560px; height: 560px;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(244,123,32,0.1) 0%, transparent 65%);
+        background: radial-gradient(circle, color-mix(in srgb, var(--orange) 12%, transparent) 0%, transparent 65%);
         pointer-events: none;
     }
 
@@ -45,9 +47,11 @@
     ══════════════════════════════════════ */
     .badge-tag {
         display: inline-flex; align-items: center; gap: 0.45rem;
+        font-family: 'Syne', sans-serif;
         font-size: 0.7rem; font-weight: 700; letter-spacing: 0.13em;
-        text-transform: uppercase; color: #F47B20;
-        border: 1.5px solid rgba(244,123,32,0.35);
+        text-transform: uppercase; color: var(--orange);
+        border: 1.5px solid color-mix(in srgb, var(--orange) 35%, transparent);
+        background: color-mix(in srgb, var(--orange) 5%, transparent);
         border-radius: 50px; padding: 0.3rem 0.85rem;
         margin-bottom: 1rem; width: fit-content;
     }
@@ -57,9 +61,9 @@
        BLOG CARDS
     ══════════════════════════════════════ */
     .blog-card {
-        background: #1A1A1A;
-        border: 1px solid rgba(255,255,255,0.07);
-        border-radius: 18px;
+        background: var(--dark-3);
+        border: 1px solid color-mix(in srgb, var(--white) 7%, transparent);
+        border-radius: 4px; /* Plus tech */
         overflow: hidden;
         display: flex;
         flex-direction: column;
@@ -67,9 +71,9 @@
     }
 
     .blog-card:hover {
-        border-color: rgba(244,123,32,0.35);
+        border-color: color-mix(in srgb, var(--orange) 40%, transparent);
         transform: translateY(-6px);
-        box-shadow: 0 20px 50px rgba(244,123,32,0.1);
+        box-shadow: 0 20px 50px color-mix(in srgb, var(--orange) 10%, transparent);
     }
 
     /* Image container */
@@ -77,7 +81,7 @@
         position: relative;
         height: 210px;
         overflow: hidden;
-        background: #242424;
+        background: var(--dark-4);
         flex-shrink: 0;
     }
 
@@ -95,26 +99,27 @@
         display: flex; flex-direction: column;
         align-items: center; justify-content: center;
         gap: 0.75rem;
-        background: linear-gradient(135deg, #1A1A1A, #242424);
+        background: linear-gradient(135deg, var(--dark-3), var(--dark-4));
     }
 
-    .blog-img-placeholder svg { color: rgba(244,123,32,0.3); }
+    .blog-img-placeholder svg { color: color-mix(in srgb, var(--orange) 30%, transparent); }
 
     /* Overlay gradient sur l'image */
     .blog-img-overlay {
         position: absolute; inset: 0;
-        background: linear-gradient(to top, rgba(26,26,26,0.7) 0%, transparent 60%);
+        background: linear-gradient(to top, color-mix(in srgb, var(--dark-3) 80%, transparent) 0%, transparent 60%);
         pointer-events: none;
     }
 
     /* Catégorie chip */
     .blog-cat {
         position: absolute; top: 0.85rem; left: 0.85rem;
-        background: #F47B20;
-        color: #fff;
+        background: var(--orange);
+        color: #000;
+        font-family: 'Syne', sans-serif;
         font-size: 0.65rem; font-weight: 700;
         text-transform: uppercase; letter-spacing: 0.1em;
-        padding: 0.25rem 0.7rem; border-radius: 50px;
+        padding: 0.25rem 0.7rem; border-radius: 2px;
     }
 
     /* Corps de la carte */
@@ -125,28 +130,30 @@
     }
 
     .blog-card-title {
-        font-size: 1.05rem; font-weight: 700;
-        color: #ffffff; line-height: 1.35;
-        letter-spacing: -0.01em;
+        font-family: 'Syne', sans-serif;
+        font-size: 1.1rem; font-weight: 700;
+        color: var(--white); line-height: 1.35;
+        text-transform: uppercase;
         margin-bottom: 0.75rem;
         transition: color 0.25s;
     }
 
-    .blog-card:hover .blog-card-title { color: #F47B20; }
+    .blog-card:hover .blog-card-title { color: var(--orange); }
 
     .blog-card-excerpt {
         font-size: 0.85rem;
-        color: rgba(255,255,255,0.5);
+        color: var(--gray-light);
         line-height: 1.65;
         margin-bottom: 1.25rem;
         flex: 1;
+        font-weight: 300;
     }
 
     .blog-card-meta {
         display: flex; align-items: center; justify-content: space-between;
-        font-size: 0.75rem; color: rgba(255,255,255,0.3);
+        font-size: 0.75rem; color: var(--gray);
         padding-top: 1rem;
-        border-top: 1px solid rgba(255,255,255,0.06);
+        border-top: 1px solid color-mix(in srgb, var(--white) 6%, transparent);
         margin-bottom: 1rem;
     }
 
@@ -156,16 +163,18 @@
 
     .author-dot {
         width: 24px; height: 24px; border-radius: 50%;
-        background: rgba(244,123,32,0.2);
+        background: color-mix(in srgb, var(--orange) 20%, transparent);
         display: flex; align-items: center; justify-content: center;
-        font-size: 0.65rem; font-weight: 700; color: #F47B20;
+        font-family: 'Syne', sans-serif;
+        font-size: 0.65rem; font-weight: 700; color: var(--orange);
         text-transform: uppercase;
     }
 
     .blog-read-link {
         display: inline-flex; align-items: center; gap: 0.35rem;
-        font-size: 0.8rem; font-weight: 700; color: #F47B20;
-        letter-spacing: 0.03em;
+        font-family: 'Syne', sans-serif;
+        font-size: 0.8rem; font-weight: 700; color: var(--orange);
+        letter-spacing: 0.08em; text-transform: uppercase;
         text-decoration: none;
         transition: gap 0.25s;
     }
@@ -182,33 +191,34 @@
     }
 
     .empty-icon {
-        width: 80px; height: 80px; border-radius: 50%;
-        background: #1A1A1A; border: 1px solid rgba(255,255,255,0.07);
+        width: 80px; height: 80px; border-radius: 4px;
+        background: var(--dark-3); border: 1px solid color-mix(in srgb, var(--white) 7%, transparent);
         display: flex; align-items: center; justify-content: center;
         margin: 0 auto 1.5rem;
     }
 
     /* ══════════════════════════════════════
-       PAGINATION override (dark)
+       PAGINATION override (Thème dynamique)
     ══════════════════════════════════════ */
     nav[role="navigation"] span,
     nav[role="navigation"] a {
-        background: #1A1A1A !important;
-        border-color: rgba(255,255,255,0.08) !important;
-        color: rgba(255,255,255,0.6) !important;
-        border-radius: 8px !important;
+        background: var(--dark-3) !important;
+        border-color: color-mix(in srgb, var(--white) 8%, transparent) !important;
+        color: var(--gray-light) !important;
+        border-radius: 4px !important;
     }
 
     nav[role="navigation"] a:hover {
-        background: rgba(244,123,32,0.15) !important;
-        border-color: rgba(244,123,32,0.35) !important;
-        color: #F47B20 !important;
+        background: color-mix(in srgb, var(--orange) 15%, transparent) !important;
+        border-color: color-mix(in srgb, var(--orange) 35%, transparent) !important;
+        color: var(--orange) !important;
     }
 
     nav[role="navigation"] [aria-current="page"] span {
-        background: #F47B20 !important;
-        border-color: #F47B20 !important;
-        color: #fff !important;
+        background: var(--orange) !important;
+        border-color: var(--orange) !important;
+        color: #000 !important;
+        font-weight: bold;
     }
 
     /* ══════════════════════════════════════
@@ -228,13 +238,12 @@
     ════════════════════════════════════════ --}}
     <section class="blog-hero">
         <div class="blog-hero-glow"></div>
-        <div class="container mx-auto px-6 relative z-10 text-center">
-            <div class="badge-tag mx-auto">Actualités & Blog</div>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-white mt-1 mb-5"
-                style="letter-spacing:-0.03em; line-height:1.05">
-                Nos <span style="color:#F47B20">actualités</span>
+        <div class="container mx-auto px-6 max-w-7xl relative z-10 text-center">
+            <div class="flex justify-center"><div class="badge-tag mb-4">Actualités & Blog</div></div>
+            <h1 class="text-5xl md:text-6xl font-display tracking-wide text-[var(--white)] mt-1 mb-5">
+                Nos <span class="text-[var(--orange)]">actualités</span>
             </h1>
-            <p class="text-lg max-w-2xl mx-auto leading-relaxed" style="color:rgba(255,255,255,0.5)">
+            <p class="text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed text-[var(--gray-light)]">
                 Conseils techniques, projets réalisés et dernières tendances en installation électrique,
                 énergie solaire et technologies de sécurité.
             </p>
@@ -244,10 +253,10 @@
     {{-- ════════════════════════════════════════
          GRILLE D'ARTICLES
     ════════════════════════════════════════ --}}
-    <section class="py-16 bg-[#111111]">
-        <div class="container mx-auto px-6">
+    <section class="py-16 bg-[var(--dark)]">
+        <div class="container mx-auto px-6 max-w-7xl">
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-7 mb-12" id="blogContainer">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12" id="blogContainer">
 
                 @forelse ($articles as $index => $article)
                     <article class="blog-card fade-up" style="transition-delay: {{ $index % 6 * 80 }}ms">
@@ -263,7 +272,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                             d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                     </svg>
-                                    <span style="font-size:0.72rem;color:rgba(255,255,255,0.2);text-transform:uppercase;letter-spacing:0.08em">
+                                    <span style="font-size:0.72rem;color:var(--gray);text-transform:uppercase;letter-spacing:0.08em;font-family:'Syne',sans-serif;font-weight:bold;">
                                         POLAM SARL
                                     </span>
                                 </div>
@@ -301,14 +310,14 @@
                 @empty
                     <div class="empty-state">
                         <div class="empty-icon">
-                            <svg class="w-9 h-9" style="color:rgba(244,123,32,0.4)"
+                            <svg class="w-9 h-9" style="color:var(--orange)"
                                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                     d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2zM14 3v4h4"/>
                             </svg>
                         </div>
-                        <p class="text-lg font-semibold text-white mb-2">Aucun article publié pour le moment</p>
-                        <p style="color:rgba(255,255,255,0.4);font-size:0.9rem">
+                        <p class="text-xl font-heading font-bold text-[var(--white)] mb-2 uppercase">Aucun article publié pour le moment</p>
+                        <p class="font-light text-[var(--gray-light)] text-sm">
                             Revenez bientôt pour découvrir nos actualités et conseils techniques.
                         </p>
                     </div>

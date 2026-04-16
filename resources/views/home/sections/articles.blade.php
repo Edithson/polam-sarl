@@ -1,576 +1,166 @@
-<style>
-    /* ══════════════════════════════════════
-       SECTION WRAPPER
-    ══════════════════════════════════════ */
-    .articles-section {
-        background: #0D0D0D;
-        padding: 6rem 0;
-        overflow: hidden;
-        position: relative;
-    }
-
-    /* Grille circuit en fond */
-    .articles-section::before {
-        content: '';
-        position: absolute; inset: 0;
-        background-image:
-            linear-gradient(rgba(244,123,32,0.04) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(244,123,32,0.04) 1px, transparent 1px);
-        background-size: 52px 52px;
-        pointer-events: none;
-    }
-
-    /* Lueur ambiante */
-    .articles-section::after {
-        content: '';
-        position: absolute;
-        top: -200px; left: 50%;
-        transform: translateX(-50%);
-        width: 700px; height: 500px;
-        border-radius: 50%;
-        background: radial-gradient(ellipse, rgba(244,123,32,0.08) 0%, transparent 65%);
-        pointer-events: none;
-    }
-
-    /* ══════════════════════════════════════
-       HEADER
-    ══════════════════════════════════════ */
-    .articles-header {
-        text-align: center;
-        max-width: 680px;
-        margin: 0 auto 4rem;
-        padding: 0 1.5rem;
-        position: relative; z-index: 2;
-    }
-
-    .articles-badge {
-        display: inline-flex; align-items: center; gap: 0.45rem;
-        font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em;
-        text-transform: uppercase; color: #F47B20;
-        border: 1.5px solid rgba(244,123,32,0.35);
-        border-radius: 50px; padding: 0.3rem 0.88rem;
-        margin-bottom: 1.1rem;
-    }
-    .articles-badge::before { content: '●'; font-size: 0.42rem; }
-
-    .articles-title {
-        font-size: clamp(2rem, 5vw, 3rem);
-        font-weight: 900;
-        color: #ffffff;
-        letter-spacing: -0.03em;
-        line-height: 1.05;
-        margin-bottom: 0.9rem;
-    }
-
-    .articles-title .accent { color: #F47B20; }
-
-    .articles-subtitle {
-        font-size: 1rem;
-        color: rgba(255,255,255,0.45);
-        line-height: 1.7;
-    }
-
-    /* ══════════════════════════════════════
-       STACK 3D
-    ══════════════════════════════════════ */
-    .viewport-stack {
-        position: relative;
-        height: 440px;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        perspective: 2000px;
-    }
-
-    /* ══════════════════════════════════════
-       CARTES
-    ══════════════════════════════════════ */
-    .article-card {
-        position: absolute;
-        width: 90%;
-        max-width: 780px;
-        height: 370px;
-        border-radius: 22px;
-        overflow: hidden;
-        display: flex;
-        flex-direction: row;
-        cursor: pointer;
-        transition: all 0.7s cubic-bezier(0.25, 1, 0.3, 1);
-
-        /* Fond sombre */
-        background: #1A1A1A;
-        border: 1px solid rgba(255,255,255,0.07);
-        box-shadow: 0 24px 64px rgba(0,0,0,0.5);
-    }
-
-    /* États de la pile 3D */
-    .article-card.active {
-        transform: translateZ(80px);
-        z-index: 40; opacity: 1;
-        border-color: rgba(244,123,32,0.25);
-        box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(244,123,32,0.15);
-    }
-
-    .article-card.next {
-        transform: translateX(32%) translateZ(-260px) rotateY(-22deg) scale(0.86);
-        z-index: 30; opacity: 0.45;
-    }
-
-    .article-card.prev {
-        transform: translateX(-32%) translateZ(-260px) rotateY(22deg) scale(0.86);
-        z-index: 30; opacity: 0.45;
-    }
-
-    .article-card.hidden {
-        transform: translateZ(-600px) scale(0.6);
-        opacity: 0; z-index: 10;
-    }
-
-    @media (max-width: 768px) {
-        .viewport-stack { height: 480px; }
-        .article-card {
-            flex-direction: column;
-            height: 420px;
-        }
-        .article-card.next {
-            transform: translateY(38px) translateZ(-180px) scale(0.9);
-            opacity: 0.25;
-        }
-        .article-card.prev {
-            transform: translateY(-38px) translateZ(-180px) scale(0.9);
-            opacity: 0.25;
-        }
-        .card-image {
-            width: 100% !important;
-            height: 160px !important;
-            order: -1;
-        }
-    }
-
-    /* ══════════════════════════════════════
-       CONTENU CARTE
-    ══════════════════════════════════════ */
-    .card-body {
-        flex: 1;
-        padding: 2.2rem 2.5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        min-width: 0;
-    }
-
-    .card-category {
-        font-size: 0.65rem;
-        font-weight: 800;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: #F47B20;
-        margin-bottom: 0.85rem;
-        display: inline-flex; align-items: center; gap: 0.4rem;
-    }
-
-    .card-category::before {
-        content: '';
-        display: block;
-        width: 14px; height: 2px;
-        background: #F47B20;
-        border-radius: 1px;
-    }
-
-    .card-title {
-        font-size: 1.25rem;
-        font-weight: 800;
-        color: #ffffff;
-        line-height: 1.3;
-        letter-spacing: -0.02em;
-        margin-bottom: 0.85rem;
-        transition: color 0.25s;
-    }
-
-    .article-card.active:hover .card-title { color: #F47B20; }
-
-    .card-excerpt {
-        font-size: 0.85rem;
-        color: rgba(255,255,255,0.45);
-        line-height: 1.7;
-        margin-bottom: 1.75rem;
-        /* Clamp à 3 lignes */
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-
-    .card-footer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-top: auto;
-        padding-top: 1.25rem;
-        border-top: 1px solid rgba(255,255,255,0.07);
-    }
-
-    .card-meta {
-        display: flex; align-items: center; gap: 0.6rem;
-        font-size: 0.72rem; font-weight: 600;
-        color: rgba(255,255,255,0.3);
-        text-transform: uppercase; letter-spacing: 0.06em;
-    }
-
-    .card-meta-sep {
-        width: 3px; height: 3px;
-        border-radius: 50%;
-        background: rgba(255,255,255,0.2);
-        flex-shrink: 0;
-    }
-
-    .card-author-dot {
-        width: 22px; height: 22px;
-        border-radius: 50%;
-        background: rgba(244,123,32,0.15);
-        border: 1.5px solid rgba(244,123,32,0.3);
-        display: flex; align-items: center; justify-content: center;
-        font-size: 0.6rem; font-weight: 800;
-        color: #F47B20; text-transform: uppercase;
-        flex-shrink: 0;
-    }
-
-    .card-read-link {
-        display: inline-flex; align-items: center; gap: 0.35rem;
-        font-size: 0.8rem; font-weight: 800;
-        color: #F47B20; text-decoration: none;
-        letter-spacing: 0.04em; text-transform: uppercase;
-        transition: gap 0.25s, color 0.25s;
-        pointer-events: auto;
-    }
-
-    .card-read-link:hover { gap: 0.65rem; }
-
-    /* ══════════════════════════════════════
-       IMAGE CÔTÉ DROIT
-    ══════════════════════════════════════ */
-    .card-image {
-        width: 280px;
-        flex-shrink: 0;
-        position: relative;
-        overflow: hidden;
-        background: #242424;
-    }
-
-    .card-image img {
-        width: 100%; height: 100%;
-        object-fit: cover;
-        transition: transform 0.6s ease;
-    }
-
-    .article-card.active:hover .card-image img { transform: scale(1.05); }
-
-    /* Overlay latéral sur l'image */
-    .card-image::before {
-        content: '';
-        position: absolute; inset: 0;
-        background: linear-gradient(to right, rgba(26,26,26,0.7) 0%, transparent 40%);
-        z-index: 1; pointer-events: none;
-    }
-
-    /* Placeholder image */
-    .card-img-placeholder {
-        width: 100%; height: 100%;
-        display: flex; flex-direction: column;
-        align-items: center; justify-content: center;
-        gap: 0.6rem;
-        background: linear-gradient(135deg, #1A1A1A, #242424);
-    }
-
-    .card-img-placeholder svg { color: rgba(244,123,32,0.25); }
-
-    /* ══════════════════════════════════════
-       BARRE DE PROGRESSION
-    ══════════════════════════════════════ */
-    .progress-bar {
-        position: absolute;
-        bottom: 0; left: 0;
-        height: 3px;
-        background: linear-gradient(90deg, #F47B20, #FF9A45);
-        width: 0;
-        transition: none;
-        z-index: 10;
-    }
-
-    /* ══════════════════════════════════════
-       NAVIGATION DOTS
-    ══════════════════════════════════════ */
-    .nav-dots {
-        display: flex;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-top: 2.5rem;
-        position: relative; z-index: 2;
-    }
-
-    .nav-dot {
-        height: 6px;
-        border-radius: 3px;
-        border: none;
-        cursor: pointer;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        background: rgba(255,255,255,0.15);
-        width: 6px;
-    }
-
-    .nav-dot.active-dot {
-        width: 28px;
-        background: #F47B20;
-    }
-
-    /* ══════════════════════════════════════
-       CTA BAS
-    ══════════════════════════════════════ */
-    .articles-cta {
-        text-align: center;
-        margin-top: 2.5rem;
-        position: relative; z-index: 2;
-    }
-
-    .articles-cta a {
-        display: inline-flex; align-items: center; gap: 0.5rem;
-        background: #F47B20; color: #fff;
-        padding: 0.75rem 2rem; border-radius: 50px;
-        font-weight: 700; font-size: 0.88rem; letter-spacing: 0.03em;
-        text-decoration: none;
-        transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
-        box-shadow: 0 4px 20px rgba(244,123,32,0.3);
-    }
-
-    .articles-cta a:hover {
-        background: #C55E00;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 30px rgba(244,123,32,0.4);
-    }
-
-    /* ══════════════════════════════════════
-       EMPTY STATE
-    ══════════════════════════════════════ */
-    .articles-empty {
-        text-align: center;
-        padding: 4rem 2rem;
-        position: relative; z-index: 2;
-    }
-
-    .articles-empty-icon {
-        width: 72px; height: 72px; border-radius: 50%;
-        background: #1A1A1A;
-        border: 1px solid rgba(255,255,255,0.07);
-        display: flex; align-items: center; justify-content: center;
-        margin: 0 auto 1.25rem;
-    }
-</style>
-
-<section class="articles-section">
-    {{-- ── Header ── --}}
-    <div class="articles-header">
-        <div class="articles-badge">Actualités & Blog</div>
-        <h2 class="articles-title">
-            Nos dernières <span class="accent">actualités</span>
+<section class="py-20 overflow-hidden bg-[var(--dark-2)] transition-colors duration-300">
+    <div class="text-center max-w-3xl mx-auto px-6 mb-16">
+        <div class="flex justify-center mb-6 text-[var(--orange)]">
+            <svg width="48" height="48" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="19" cy="19" r="17" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
+              <line x1="12" y1="19" x2="26" y2="19" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="27" cy="19" r="2" fill="currentColor"/>
+              <circle cx="19" cy="13" r="2" fill="currentColor"/>
+              <circle cx="19" cy="25" r="2" fill="currentColor"/>
+              <line x1="19" y1="12" x2="19" y2="14" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="19" y1="24" x2="19" y2="26" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+        </div>
+        <div class="section-tag justify-center mb-2">Nos actualités</div>
+        <h2 class="text-4xl md:text-5xl font-display text-[var(--white)] tracking-wide">
+            Focus <span class="text-[var(--orange)]">Expertise</span>
         </h2>
-        <p class="articles-subtitle">
-            Conseils techniques, projets réalisés et tendances en installation électrique,
-            énergie solaire et systèmes de sécurité.
+        <p class="text-[var(--gray-light)] mt-3 text-sm md:text-base font-light">
+            Découvrez nos dernières réflexions sur l'innovation technologique et nos interventions sur le terrain.
         </p>
     </div>
 
-    {{-- ── Stack 3D ── --}}
-    <div class="viewport-stack" id="articleStack" style="perspective:2000px">
-
+    <div class="viewport-stack relative h-[600px] md:h-[500px] w-full flex items-center justify-center" id="articleStack" style="perspective: 2000px;">
         @forelse ($articles->take(3) as $index => $article)
-
-            <article class="article-card {{ $index === 0 ? 'active' : ($index === 1 ? 'next' : 'prev') }}"
+            {{-- La carte utilise var(--dark-3) pour le fond et un border mixé avec l'orange --}}
+            <article class="article-card absolute w-[90%] max-w-[750px] h-[450px] md:h-[400px] bg-[var(--dark-3)] rounded-[4px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] border border-[color-mix(in_srgb,var(--orange)_15%,transparent)] overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.25,1,0.3,1)] cursor-pointer flex flex-col md:flex-row {{ $index === 0 ? 'active' : ($index === 1 ? 'next' : 'prev') }}"
                      onclick="manualNav({{ $index }})"
                      data-index="{{ $index }}">
 
-                {{-- Corps texte --}}
-                <div class="card-body {{ $index % 2 != 0 ? 'md-order-last' : '' }}">
-
-                    <span class="card-category">
-                        {{ $article->category->name ?? 'Actualité' }}
+                <div class="p-8 md:p-10 flex-1 flex flex-col justify-center {{ $index % 2 != 0 ? 'md:order-last' : '' }}">
+                    <span class="text-[var(--orange)] font-heading font-bold text-[10px] tracking-[0.2em] uppercase mb-3">
+                        {{ $article->category->name ?? 'Expertise' }}
                     </span>
-
-                    <h3 class="card-title">
-                        {{ Str::limit(strip_tags($article->title), 55) }}
+                    <h3 class="text-xl md:text-2xl font-heading font-bold mb-3 leading-tight text-[var(--white)]">
+                        {{ Str::limit(strip_tags($article->title), 45) }}
                     </h3>
-
-                    <p class="card-excerpt">
-                        {{ Str::limit(strip_tags($article->content), 140) }}
+                    <p class="text-[var(--gray)] text-sm leading-relaxed mb-6 font-light">
+                        {{ Str::limit(strip_tags($article->content), 130) }}
                     </p>
 
-                    <div class="card-footer">
-                        <div class="card-meta">
-                            <div class="card-author-dot">
-                                {{ substr($article->user->name ?? 'P', 0, 1) }}
-                            </div>
-                            <span>{{ $article->user->name ?? 'Rédaction' }}</span>
-                            <div class="card-meta-sep"></div>
+                    <div class="flex items-center justify-between mt-auto">
+                        <div class="flex items-center gap-3 text-[10px] font-heading font-bold text-[var(--gray-light)] uppercase tracking-wider">
                             <span>{{ $article->created_at->translatedFormat('d M Y') }}</span>
+                            <span class="w-1.5 h-1.5 bg-[var(--orange)] rounded-full"></span>
+                            <span>{{ $article->user->name ?? 'Rédaction' }}</span>
                         </div>
-
-                        <a href="{{ route('home.article.show', $article->slug) }}"
-                           class="card-read-link"
-                           onclick="event.stopPropagation()">
-                            Lire <span>→</span>
+                        <a href="{{ route('home.article.show', $article->slug) }}" class="text-[var(--orange)] font-heading font-bold text-xs uppercase tracking-widest hover:translate-x-1 transition-transform">
+                            Lire →
                         </a>
                     </div>
-
                 </div>
 
-                {{-- Image --}}
-                <div class="card-image">
+                <div class="card-image w-full md:w-1/3 h-48 md:h-full bg-[var(--dark-4)] relative overflow-hidden">
                     @if($article->picture)
-                        <img src="{{ asset('storage/' . $article->picture) }}"
-                             alt="{{ $article->title }}">
+                        <img src="{{ asset('storage/' . $article->picture) }}" alt="{{ $article->title }}" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
                     @else
-                        <div class="card-img-placeholder">
-                            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                            </svg>
-                            <span style="font-size:0.65rem;color:rgba(255,255,255,0.18);
-                                         text-transform:uppercase;letter-spacing:0.1em">
-                                POLAM SARL
-                            </span>
+                        {{-- Image de remplacement stylisée Tech --}}
+                        <div class="w-full h-full bg-[color-mix(in_srgb,var(--orange)_5%,transparent)] flex items-center justify-center">
+                            <svg class="w-12 h-12 text-[var(--orange)] opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                         </div>
                     @endif
                 </div>
 
-                {{-- Barre de progression --}}
-                <div class="progress-bar" id="pb-{{ $index }}"></div>
-
+                <div class="progress-bar absolute bottom-0 left-0 h-1 bg-[var(--orange)] w-0 transition-none" id="pb-{{ $index }}"></div>
             </article>
-
         @empty
-
-            <div class="articles-empty">
-                <div class="articles-empty-icon">
-                    <svg class="w-8 h-8" style="color:rgba(244,123,32,0.35)"
-                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                            d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2zM14 3v4h4"/>
-                    </svg>
-                </div>
-                <p style="color:rgba(255,255,255,0.5);font-size:0.95rem">
-                    Aucun article disponible pour le moment.
-                </p>
+            <div class="text-center text-[var(--gray-light)]">
+                <p>Aucun article disponible pour le moment.</p>
             </div>
-
         @endforelse
-
     </div>
 
-    {{-- ── Navigation dots + CTA ── --}}
     @if($articles->count() > 0)
+    <div class="flex justify-center gap-2 mt-12">
+        @foreach($articles->take(3) as $index => $article)
+            <button onclick="manualNav({{ $index }})"
+                    class="nav-dot h-1.5 rounded-full transition-all duration-500 {{ $index === 0 ? 'active-dot' : '' }}"
+                    id="dot-{{ $index }}"></button>
+        @endforeach
+    </div>
 
-        <div class="nav-dots">
-            @foreach($articles->take(3) as $index => $article)
-                <button class="nav-dot {{ $index === 0 ? 'active-dot' : '' }}"
-                        id="dot-{{ $index }}"
-                        onclick="manualNav({{ $index }})"
-                        aria-label="Article {{ $index + 1 }}">
-                </button>
-            @endforeach
-        </div>
-
-        <div class="articles-cta">
-            <a href="{{ route('article') }}">
-                Voir tous nos articles
-                <svg width="14" height="14" fill="none" stroke="currentColor"
-                     viewBox="0 0 24 24" style="flex-shrink:0">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                          d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-            </a>
-        </div>
-
+    <div class="w-full flex justify-center text-center mt-10">
+        <a href="{{ route('article') }}" class="btn-ghost">Voir tous nos articles</a>
+    </div>
     @endif
-
 </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const cards  = document.querySelectorAll('.article-card');
-    const dots   = document.querySelectorAll('.nav-dot');
-    const total  = cards.length;
-    const DURATION = 7000; // ms par slide
-
-    if (total === 0) return;
-
-    let current = 0;
-    let start   = Date.now();
-    let rafId   = null;
-
-    /* ─── Mise à jour visuelle ─── */
-    function updateDisplay() {
-        cards.forEach((card, i) => {
-            card.classList.remove('active', 'prev', 'next', 'hidden');
-            dots[i]?.classList.remove('active-dot');
-
-            if (i === current) {
-                card.classList.add('active');
-                dots[i]?.classList.add('active-dot');
-            } else if (i === (current + 1) % total) {
-                card.classList.add('next');
-            } else if (i === (current - 1 + total) % total) {
-                card.classList.add('prev');
-            } else {
-                card.classList.add('hidden');
-            }
-        });
-        start = Date.now();
+<style>
+    /* CSS des points de navigation pour correspondre au thème dynamique */
+    .nav-dot {
+        width: 0.5rem;
+        background-color: color-mix(in srgb, var(--orange) 20%, transparent);
+    }
+    .nav-dot.active-dot {
+        width: 2rem;
+        background-color: var(--orange);
     }
 
-    /* ─── Navigation manuelle ─── */
-    window.manualNav = function (index) {
-        if (index === current) return;
-        current = index;
-        updateDisplay();
-    };
+    /* Classes d'état pour le stack 3D (Inchangées) */
+    .article-card.active { transform: translateZ(100px); z-index: 40; opacity: 1; }
+    .article-card.next { transform: translateX(35%) translateZ(-300px) rotateY(-25deg) scale(0.85); z-index: 30; opacity: 0.5; }
+    .article-card.prev { transform: translateX(-35%) translateZ(-300px) rotateY(25deg) scale(0.85); z-index: 30; opacity: 0.5; }
+    .article-card.hidden { transform: translateZ(-600px) scale(0.6); opacity: 0; z-index: 10; }
 
-    /* ─── Boucle RAF ─── */
-    function step() {
-        const elapsed  = Date.now() - start;
-        const progress = Math.min((elapsed / DURATION) * 100, 100);
+    @media (max-width: 768px) {
+        .article-card.next { transform: translateY(40px) translateZ(-200px) scale(0.9); opacity: 0.3; }
+        .article-card.prev { transform: translateY(-40px) translateZ(-200px) scale(0.9); opacity: 0.3; }
+    }
+</style>
 
-        // Reset toutes les barres
-        document.querySelectorAll('.progress-bar')
-                .forEach(bar => bar.style.width = '0%');
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let current = 0;
+        const cards = document.querySelectorAll('.article-card');
+        const dots = document.querySelectorAll('.nav-dot');
+        const total = cards.length;
+        const duration = 7000; // 7 secondes
+        let start = Date.now();
 
-        // Avancer la barre active
-        const activeBar = document.getElementById(`pb-${current}`);
-        if (activeBar) activeBar.style.width = `${progress}%`;
+        if(total === 0) return;
 
-        // Passage au suivant
-        if (progress >= 100) {
-            current = (current + 1) % total;
-            updateDisplay();
+        function updateDisplay() {
+            cards.forEach((card, i) => {
+                card.classList.remove('active', 'prev', 'next', 'hidden');
+                // Nettoyage simplifié des dots
+                dots[i].classList.remove('active-dot');
+
+                if (i === current) {
+                    card.classList.add('active');
+                    dots[i].classList.add('active-dot');
+                } else if (i === (current + 1) % total) {
+                    card.classList.add('next');
+                } else if (i === (current - 1 + total) % total) {
+                    card.classList.add('prev');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+            start = Date.now();
         }
 
-        rafId = requestAnimationFrame(step);
-    }
+        window.manualNav = function(index) {
+            current = index;
+            updateDisplay();
+        };
 
-    /* ─── Pause au survol ─── */
-    const stack = document.getElementById('articleStack');
-    if (stack) {
-        stack.addEventListener('mouseenter', () => {
-            cancelAnimationFrame(rafId);
-            document.querySelectorAll('.progress-bar')
-                    .forEach(bar => bar.style.transition = 'none');
-        });
-        stack.addEventListener('mouseleave', () => {
-            start = Date.now(); // repart de zéro
-            rafId = requestAnimationFrame(step);
-        });
-    }
+        function step() {
+            const elapsed = Date.now() - start;
+            const progress = Math.min((elapsed / duration) * 100, 100);
 
-    updateDisplay();
-    rafId = requestAnimationFrame(step);
-});
+            // Gestion des barres de progression
+            document.querySelectorAll('.progress-bar').forEach(bar => bar.style.width = '0%');
+            const activeBar = document.getElementById(`pb-${current}`);
+            if(activeBar) activeBar.style.width = `${progress}%`;
+
+            if (progress >= 100) {
+                current = (current + 1) % total;
+                updateDisplay();
+            }
+            requestAnimationFrame(step);
+        }
+
+        updateDisplay();
+        requestAnimationFrame(step);
+    });
 </script>

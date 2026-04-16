@@ -1,5 +1,22 @@
 import './bootstrap';
 
+const toggle = document.getElementById('theme-toggle') // c'est maintenant un <input>
+const root   = document.documentElement
+
+if (toggle) {
+    // Sync état visuel au chargement depuis localStorage
+    const isDark = localStorage.theme === 'dark'
+    toggle.checked = isDark
+    root.classList.toggle('dark', isDark)
+
+    // Écoute le changement de la checkbox
+    toggle.addEventListener('change', () => {
+        const dark = toggle.checked
+        root.classList.toggle('dark', dark)
+        localStorage.setItem('theme', dark ? 'dark' : 'light')
+    })
+}
+
 // Progress bar
   window.addEventListener('scroll', () => {
     const st = window.scrollY;
@@ -11,11 +28,11 @@ import './bootstrap';
   window.addEventListener('scroll', () => {
     const nav = document.getElementById('navbar');
     if (window.scrollY > 60) {
-      nav.style.background = 'rgba(5,5,5,0.97)';
-      nav.style.padding = '0.8rem 2rem';
+        nav.style.background = 'color-mix(in srgb, var(--dark) 97%, transparent)';
+        nav.style.padding = '0.8rem 2rem';
     } else {
-      nav.style.background = 'rgba(10,10,10,0.85)';
-      nav.style.padding = '1.2rem 2rem';
+        nav.style.background = 'color-mix(in srgb, var(--dark) 85%, transparent)';
+        nav.style.padding = '1.2rem 2rem';
     }
   });
 

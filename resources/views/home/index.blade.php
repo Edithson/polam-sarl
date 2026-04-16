@@ -8,6 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
     <link rel="icon" href="{{ $siteLogo ? asset('storage/' . $siteLogo) : asset('media/img/logo.png') }}" type="image/png">
 
+    <script>
+        if (localStorage.theme === 'dark') {
+        document.documentElement.classList.add('dark')
+        }
+    </script>
+
     @vite(['resources/css/home.css', 'resources/js/home.js'])
 
     <script>

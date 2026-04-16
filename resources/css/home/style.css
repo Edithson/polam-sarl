@@ -14,6 +14,19 @@ html {
 }
 
   :root {
+        --orange:      #EA580C;  /* assombri pour le contraste sur blanc */
+    --orange-deep:  #C2410C;
+    --orange-glow:  #F97316;
+    --dark:       #FAFAFA;  /* fond principal */
+    --dark-2:     #F2F2F2;
+    --dark-3:     #E8E8E8;
+    --dark-4:     #DEDEDE;
+    --white:      #0A0A0A;  /* texte principal */
+    --gray:       #555555;
+    --gray-light:  #888888;
+  }
+
+    .dark {
     --orange: #F97316;
     --orange-deep: #EA580C;
     --orange-glow: #FB923C;
@@ -25,6 +38,7 @@ html {
     --gray: #888888;
     --gray-light: #BBBBBB;
   }
+
 
   body {
     background: var(--dark);
