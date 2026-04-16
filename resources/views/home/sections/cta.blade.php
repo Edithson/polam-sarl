@@ -55,7 +55,7 @@
                         <div class="absolute inset-0 w-1/2 h-full bg-white/30 skew-x-[-20deg] -translate-x-[150%] group-hover:translate-x-[250%] transition-transform duration-700"></div>
                     </a>
 
-                    <a href="tel:+237698359954" class="flex items-center justify-center border border-[color-mix(in_srgb,var(--orange)_30%,transparent)] text-[var(--white)] px-8 py-4 font-heading font-bold text-sm uppercase tracking-widest hover:bg-[color-mix(in_srgb,var(--orange)_5%,transparent)] transition-all" style="clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);">
+                    <a href="tel:+237674180413" class="flex items-center justify-center border border-[color-mix(in_srgb,var(--orange)_30%,transparent)] text-[var(--white)] px-8 py-4 font-heading font-bold text-sm uppercase tracking-widest hover:bg-[color-mix(in_srgb,var(--orange)_5%,transparent)] transition-all" style="clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);">
                         <svg class="w-4 h-4 mr-3 text-[var(--orange)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                         </svg>

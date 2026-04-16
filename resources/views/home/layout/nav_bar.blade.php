@@ -23,15 +23,15 @@
   <ul class="nav-links">
     {{-- La classe active est gérée dynamiquement par Blade --}}
     <li><a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Accueil</a></li>
-    <li><a href="{{ route('about') }}" class="{{ request()->routeIs('about') ? 'active' : '' }}">À propos</a></li>
     <li><a href="{{ route('service') }}" class="{{ request()->routeIs('service') ? 'active' : '' }}">Services</a></li>
+    <li><a href="{{ route('about') }}" class="{{ request()->routeIs('about') ? 'active' : '' }}">À propos</a></li>
     <li><a href="{{ route('article') }}" class="{{ request()->routeIs('article') ? 'active' : '' }}">Articles</a></li>
     <li><a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a></li>
   </ul>
 
   <div class="nav-actions">
     <x-theme-toggle />
-    <button class="btn-nav" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Demander un devis</button>
+    <a class="btn-nav" href="{{ route('contact') }}">Demander un devis</a>
 
     <div class="hamburger" id="ham" onclick="toggleMenu()" aria-label="Menu">
       <span class="line-top"></span>
@@ -44,8 +44,8 @@
 <div class="mobile-menu" id="mobile-menu">
     <div class="mobile-menu-content">
         <a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Accueil</a>
-        <a href="{{ route('about') }}" class="{{ request()->routeIs('about') ? 'active' : '' }}">À Propos</a>
         <a href="{{ route('service') }}" class="{{ request()->routeIs('service') ? 'active' : '' }}">Services</a>
+        <a href="{{ route('about') }}" class="{{ request()->routeIs('about') ? 'active' : '' }}">À Propos</a>
         <a href="{{ route('article') }}" class="{{ request()->routeIs('article') ? 'active' : '' }}">Articles</a>
         <a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a>
     </div>

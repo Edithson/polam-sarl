@@ -157,7 +157,7 @@
 
 </style>
 
-<div class="contact-page">
+<div class="contact-page mt-10">
 
     {{-- ════════════════════════════════════════
          HERO SECTION
@@ -213,7 +213,6 @@
                             </div>
                             <div>
                                 <h4 class="info-title">Téléphone / WhatsApp</h4>
-                                <p class="info-desc">+237 698 359 954</p>
                                 <p class="info-desc">+237 674 180 413</p>
                             </div>
                         </div>

@@ -302,7 +302,8 @@
 {{-- ════════════════════════════════════════
      HERO
 ════════════════════════════════════════ --}}
-<section class="about-hero pt-36 pb-24 text-[var(--white)]">
+<br><br>
+<section class="about-hero pt-36 pb-24 text-[var(--white)] mt-12 pt-10">
     <div class="container mx-auto px-6 relative z-10">
         <div class="max-w-3xl">
             <div class="badge-tag">À propos de nous</div>
@@ -614,30 +615,69 @@
 </section>
 
 {{-- ════════════════════════════════════════
-     CTA FINAL
+     CTA FINAL (Design Tech & Premium)
 ════════════════════════════════════════ --}}
-<section class="cta-section py-24">
-    <div class="container mx-auto px-6 relative z-10 text-center max-w-4xl">
-        <h2 class="text-4xl md:text-5xl font-display text-[#000] mb-6 tracking-wide">
-            Prêt à concrétiser votre projet ?
-        </h2>
-        <p class="text-lg md:text-xl font-light mb-10 text-[#000]/80">
-            Contactez-nous dès aujourd'hui pour une consultation gratuite et découvrez comment
-            POLAM SARL peut transformer vos ambitions technologiques en réalité.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{{ route('contact') }}"
-               class="bg-[#000] text-[var(--white)] px-10 py-5 font-heading font-bold text-sm uppercase tracking-widest hover:bg-[var(--dark-2)] transition-all duration-300" style="clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);">
-                Demander un devis
-            </a>
-            <a href="{{ route('service') }}"
-               class="bg-transparent border border-[#000]/30 text-[#000] px-10 py-5 font-heading font-bold text-sm uppercase tracking-widest hover:bg-[#000]/10 transition-all duration-300" style="clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);">
-                Nos services
-            </a>
+<section class="relative py-24 overflow-hidden bg-[var(--dark)] transition-colors duration-300">
+
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[var(--orange)]/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(color-mix(in srgb, var(--orange) 30%, transparent) 1px, transparent 1px); background-size: 32px 32px;"></div>
+
+    <div class="container mx-auto px-6 relative z-10 max-w-5xl">
+
+        <div class="relative bg-[var(--dark-2)]/80 backdrop-blur-md border border-[color-mix(in_srgb,var(--white)_10%,transparent)] p-10 md:p-16 text-center shadow-[0_0_50px_-12px_rgba(0,0,0,0.5)] overflow-hidden">
+            <img src="{{ asset('media/img/services/cta3.jpg') }}" alt="call to action" class="absolute inset-0 w-full h-full object-cover object-center opacity-10 z-0 mix-blend-luminosity" />
+
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[var(--orange)] to-transparent"></div>
+            <div class="absolute bottom-0 right-0 w-24 h-24 border-b border-r border-[var(--orange)]/20 rounded-br-3xl transform translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
+
+            <div class="flex justify-center mb-6">
+                <span class="inline-flex items-center gap-2 font-heading text-[10px] font-bold tracking-[0.2em] uppercase text-[var(--orange)] border border-[var(--orange)]/30 px-4 py-1.5 bg-[var(--orange)]/5">
+                    <span class="w-1.5 h-1.5 bg-[var(--orange)] rounded-full animate-pulse"></span>
+                    Disponibilité immédiate
+                </span>
+            </div>
+
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-display text-[var(--white)] mb-6 tracking-wide leading-[1.1]">
+                Prêt à concrétiser <br>
+                <span class="text-[var(--orange)]">votre projet ?</span>
+            </h2>
+
+            <p class="text-lg font-light mb-10 text-[var(--gray-light)] max-w-2xl mx-auto leading-relaxed">
+                Contactez-nous dès aujourd'hui pour une consultation gratuite. Découvrez comment
+                <span class="text-[var(--white)] font-medium">POLAM SARL</span> peut transformer vos ambitions technologiques en réalité.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-5 justify-center items-center">
+                <a href="{{ route('contact') }}"
+                   class="group relative flex items-center justify-center bg-[var(--orange)] text-[#000] px-10 py-5 font-heading font-bold text-sm uppercase tracking-widest hover:bg-[var(--orange-glow)] transition-all duration-300 w-full sm:w-auto shadow-[0_10px_30px_rgba(249,115,22,0.2)]" style="clip-path: polygon(15px 0%, 100% 0%, calc(100% - 15px) 100%, 0% 100%);">
+                    Demander un devis
+                    <svg class="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </a>
+
+                <a href="{{ route('service') }}"
+                   class="group bg-[var(--dark-3)] border border-[color-mix(in_srgb,var(--white)_15%,transparent)] text-[var(--white)] px-10 py-5 font-heading font-bold text-sm uppercase tracking-widest hover:border-[var(--orange)] hover:text-[var(--orange)] transition-all duration-300 w-full sm:w-auto flex justify-center items-center" style="clip-path: polygon(15px 0%, 100% 0%, calc(100% - 15px) 100%, 0% 100%);">
+                    Nos services
+                </a>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-[color-mix(in_srgb,var(--white)_5%,transparent)] flex flex-col md:flex-row items-center justify-center gap-6">
+
+                <div class="font-heading font-bold text-xs uppercase tracking-widest text-[var(--gray)] flex items-center gap-2">
+                    <svg class="w-4 h-4 text-[var(--orange)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    Ligne directe : <a href="tel:+237674180413" class="text-[var(--white)] hover:text-[var(--orange)] transition-colors">+237 674 180 413</a>
+                </div>
+
+                <span class="hidden md:block w-1 h-1 bg-[color-mix(in_srgb,var(--white)_15%,transparent)] rounded-full"></span>
+
+                <div class="font-heading font-bold text-xs uppercase tracking-widest text-[var(--gray)] flex items-center gap-2">
+                     <svg class="w-4 h-4 text-[var(--orange)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    <a href="mailto:polamsarl@gmail.com" class="text-[var(--white)] hover:text-[var(--orange)] transition-colors">polamsarl@gmail.com</a>
+                </div>
+
+            </div>
+
         </div>
-        <p class="mt-10 font-heading font-bold text-sm uppercase tracking-widest text-[#000]/60">
-            Ligne directe : <a href="tel:+237698359954" class="text-[#000] hover:underline">+237 698 359 954</a>
-        </p>
     </div>
 </section>
 

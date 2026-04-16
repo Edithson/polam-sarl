@@ -4,12 +4,11 @@ const toggle = document.getElementById('theme-toggle') // c'est maintenant un <i
 const root   = document.documentElement
 
 if (toggle) {
-    // Sync état visuel au chargement depuis localStorage
-    const isDark = localStorage.theme === 'dark'
+    // ✅ dark par défaut si rien dans localStorage
+    const isDark = localStorage.theme !== 'light'
     toggle.checked = isDark
     root.classList.toggle('dark', isDark)
 
-    // Écoute le changement de la checkbox
     toggle.addEventListener('change', () => {
         const dark = toggle.checked
         root.classList.toggle('dark', dark)

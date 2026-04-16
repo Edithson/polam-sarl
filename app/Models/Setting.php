@@ -32,11 +32,11 @@ class Setting extends Model
         if (!$settings) {
             // Création d'un objet temporaire avec tes données par défaut
             return (object) [
-                'name' => 'CINV-CORSA',
+                'name' => 'POLAM SARL',
                 'logo' => 'default-logo.png',
                 'phones' => [],
                 'socials' => [],
-                'email' => 'contact@cinvcorsa.com',
+                'email' => 'contact@polamsarl.com',
                 // Ajoute tes autres valeurs par défaut ici
             ];
         }
@@ -63,7 +63,7 @@ class Setting extends Model
     {
         return Cache::rememberForever('site_settings', function () {
             return self::first() ?? new self([
-                'name' => 'CINV-CORSA',
+                'name' => 'POLAM SARL',
                 'logo' => 'default-logo.png'
             ]);
         });

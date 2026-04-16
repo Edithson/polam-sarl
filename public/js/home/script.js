@@ -26,10 +26,6 @@ function closeMobileMenu() {
     document.body.style.overflow = '';
 }
 
-mobileBtn.addEventListener('click', openMobileMenu);
-closeMobile.addEventListener('click', closeMobileMenu);
-mobileOverlay.addEventListener('click', closeMobileMenu);
-
 // Close mobile menu when clicking on a link
 document.querySelectorAll('#mobile-menu a').forEach(link => {
     link.addEventListener('click', closeMobileMenu);
@@ -56,5 +52,3 @@ const pipelineObserver = new IntersectionObserver((entries) => {
         }
     });
 }, { threshold: 0.2 });
-
-pipelineObserver.observe(document.querySelector('.pipeline-card').parentElement.parentElement);

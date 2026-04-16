@@ -559,15 +559,7 @@
                 <div class="sidebar-card" style="margin-top:1.5rem">
                     <div class="sidebar-card-title">Nous joindre</div>
                     <div style="display:flex;flex-direction:column;gap:0.85rem">
-                        <a href="tel:+237698359954"
-                           style="display:flex;align-items:center;gap:0.7rem;font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:600;
-                                  color:var(--gray-light);text-decoration:none;
-                                  transition:color 0.2s"
-                           onmouseover="this.style.color='var(--orange)'"
-                           onmouseout="this.style.color='var(--gray-light)'">
-                            <span style="color:var(--orange);font-size:1rem">📞</span>
-                            +237 698 359 954
-                        </a>
+
                         <a href="tel:+237674180413"
                            style="display:flex;align-items:center;gap:0.7rem;font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:600;
                                   color:var(--gray-light);text-decoration:none;

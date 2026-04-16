@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>POLAM SARL – La Technologie & L'Innovation à Votre Portée</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-    <link rel="icon" href="{{ $siteLogo ? asset('storage/' . $siteLogo) : asset('media/img/logo.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('media/img/logo.png') }}" type="image/png">
 
     <script>
-        if (localStorage.theme === 'dark') {
-        document.documentElement.classList.add('dark')
+        if (localStorage.theme !== 'light') {
+            document.documentElement.classList.add('dark')
         }
     </script>
 
@@ -59,8 +59,8 @@
         </button>
 
         @php
-            $whatsappNumber = "23760770861";
-            $message = rawurlencode("Bonjour CINV-CORSA, j'aimerais avoir plus d'informations sur vos services.");
+            $whatsappNumber = "237674180413";
+            $message = rawurlencode("Bonjour POLAM SARL, j'aimerais avoir plus d'informations sur vos services.");
         @endphp
         <a
             href="https://wa.me/{{ $whatsappNumber }}?text={{ $message }}"

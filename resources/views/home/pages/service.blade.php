@@ -188,7 +188,7 @@
         }
     </style>
 
-    <div class="bg-[var(--dark)] text-[var(--white)] transition-colors duration-300">
+    <div class="bg-[var(--dark)] text-[var(--white)] transition-colors duration-300 mt-8">
 
         {{-- ════════════════════════════════════════
              HERO BANNER
@@ -222,7 +222,7 @@
                  style="border:1px solid color-mix(in srgb, var(--orange) 20%, transparent); clip-path: polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px);">
                 <div class="w-full h-full flex items-center justify-center bg-[var(--dark-3)]">
                     <div class="text-center p-6">
-                        <div class="text-6xl text-[var(--orange)]">⚡</div>
+                        <img class="text-6xl text-[var(--orange)]" src="{{ asset('media/img/services/profil.png') }}" alt="Photo d équipe"/>
                         <p class="text-sm mt-4 font-heading font-bold uppercase tracking-widest text-[var(--white)]">POLAM SARL</p>
                         <p class="text-xs mt-1 text-[var(--gray)]">La technologie à votre portée</p>
                     </div>
@@ -244,7 +244,7 @@
                                 <div class="relative z-10 h-[420px] w-full flex items-center justify-center bg-[var(--dark-2)]"
                                      style="border:1px solid color-mix(in srgb, var(--orange) 18%, transparent); clip-path: polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px);">
                                     <div class="text-center">
-                                        <div class="text-6xl text-[var(--orange)]">⚡</div>
+                                        <img class="text-6xl text-[var(--orange)]" src="{{ asset('media/img/services/installation_electrique_domestique.webp') }}" alt="Installation Électrique"/>
                                         <p class="mt-4 font-heading font-bold text-sm text-[var(--white)] tracking-widest uppercase">Installation Électrique</p>
                                     </div>
                                 </div>
@@ -297,7 +297,7 @@
                                 <div class="relative z-10 h-[420px] w-full flex items-center justify-center bg-[var(--dark-3)]"
                                      style="border:1px solid color-mix(in srgb, var(--orange) 18%, transparent); clip-path: polygon(0% 0%, calc(100% - 20px) 0%, 100% 20px, 100% 100%, 20px 100%, 0% calc(100% - 20px));">
                                     <div class="text-center">
-                                        <div class="text-6xl text-[var(--orange)]">☀️</div>
+                                        <img class="text-6xl text-[var(--orange)]" src="{{ asset('media/img/services/installation_solaire.png') }}" alt="Énergie Solaire"/>
                                         <p class="mt-4 font-heading font-bold text-sm text-[var(--white)] tracking-widest uppercase">Énergie Solaire</p>
                                     </div>
                                 </div>
@@ -349,7 +349,7 @@
                                 <div class="relative z-10 h-[420px] w-full flex items-center justify-center bg-[var(--dark-2)]"
                                      style="border:1px solid color-mix(in srgb, var(--orange) 18%, transparent); clip-path: polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px);">
                                     <div class="text-center">
-                                        <div class="text-6xl text-[var(--orange)]">📷</div>
+                                        <img class="text-6xl text-[var(--orange)]" src="{{ asset('media/img/services/securite2.png') }}" alt="Vidéosurveillance & Alarme"/>
                                         <p class="mt-4 font-heading font-bold text-sm text-[var(--white)] tracking-widest uppercase">Sécurité & Accès</p>
                                     </div>
                                 </div>
@@ -397,7 +397,7 @@
                                 <div class="relative z-10 h-[420px] w-full flex items-center justify-center bg-[var(--dark-3)]"
                                      style="border:1px solid color-mix(in srgb, var(--orange) 18%, transparent); clip-path: polygon(0% 0%, calc(100% - 20px) 0%, 100% 20px, 100% 100%, 20px 100%, 0% calc(100% - 20px));">
                                     <div class="text-center">
-                                        <div class="text-6xl text-[var(--orange)]">🌐</div>
+                                        <img class="text-6xl text-[var(--orange)]" src="{{ asset('media/img/services/reseau_telecom.jpg') }}" alt="Réseaux & Télécoms"/>
                                         <p class="mt-4 font-heading font-bold text-sm text-[var(--white)] tracking-widest uppercase">Réseaux & Télécoms</p>
                                     </div>
                                 </div>
@@ -601,30 +601,7 @@
         {{-- ════════════════════════════════════════
              CTA FINAL
         ════════════════════════════════════════ --}}
-        <section class="cta-section py-24">
-            <div class="container mx-auto px-6 max-w-4xl relative z-10 text-center">
-                <h2 class="text-4xl md:text-5xl font-display text-[#000] tracking-wide mb-6">
-                    Prêt à lancer votre projet ?
-                </h2>
-                <p class="text-lg font-light mb-10 text-[#000]/80">
-                    Contactez-nous pour une étude gratuite et un devis personnalisé adapté à vos besoins.
-                </p>
-                <div class="flex flex-wrap gap-4 justify-center">
-                    <a href="{{ route('contact') }}"
-                       class="bg-[#000] text-[var(--white)] px-10 py-5 font-heading font-bold text-sm uppercase tracking-widest hover:bg-[var(--dark-2)] transition-all duration-300" style="clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);">
-                        Demander un devis
-                    </a>
-                    <a href="tel:+237699070353"
-                       class="bg-transparent border border-[#000]/30 text-[#000] px-10 py-5 font-heading font-bold text-sm uppercase tracking-widest hover:bg-[#000]/10 transition-all duration-300" style="clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);">
-                        📞 699 070 353
-                    </a>
-                </div>
-                <p class="mt-10 font-heading font-bold text-sm uppercase tracking-widest text-[#000]/60">
-                    Ou écrivez-nous à
-                    <a href="mailto:polamsarl@gmail.com" class="text-[#000] hover:underline">polamsarl@gmail.com</a>
-                </p>
-            </div>
-        </section>
+        @include('home.sections.cta_service')
 
     </div>
 

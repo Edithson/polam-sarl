@@ -1,5 +1,30 @@
+<style>
+  /* Ajout du style pour le crédit développeur */
+  .dev-credit {
+    font-size: 0.72rem;
+    color: var(--gray);
+    margin-top: 0.4rem;
+    font-family: 'Syne', sans-serif;
+  }
 
-<!-- FOOTER -->
+  .dev-link {
+    color: var(--gray-light);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  .dev-link:hover {
+    color: var(--orange);
+  }
+
+  @media (min-width: 768px) {
+    .dev-credit {
+      margin-top: 0;
+    }
+  }
+</style>
+
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
@@ -14,7 +39,7 @@
             <line x1="19" y1="12" x2="19" y2="14" stroke="#F97316" stroke-width="1.5"/>
             <line x1="19" y1="24" x2="19" y2="26" stroke="#F97316" stroke-width="1.5"/>
           </svg>
-          <span style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.1em;">POLAM SARL</span>
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.1em;color:var(--white);">POLAM SARL</span>
         </div>
         <p class="footer-brand-desc">La technologie et l'innovation à votre portée. Spécialistes en installations électriques, énergies renouvelables et systèmes de sécurité au Cameroun depuis 2019.</p>
         <div style="margin-top:1.5rem;padding:0.6rem 1rem;background:rgba(249,115,22,0.08);border-left:3px solid var(--orange);font-size:0.72rem;color:var(--orange);font-family:'Syne',sans-serif;font-weight:600;">
@@ -40,16 +65,15 @@
           <li><a href="{{ route('service') }}#solaire">Énergie solaire</a></li>
           <li><a href="{{ route('service') }}#securite">Vidéosurveillance</a></li>
           <li><a href="{{ route('service') }}#reseaux">Réseaux & Télécoms</a></li>
-          <li><a href="{{ route('service') }}#maintenance">Maintenance IT</a></li>
-          <li><a href="{{ route('service') }}#maintenance">Biomédical</a></li>
+          <li><a href="{{ route('service') }}#maintenance">Maintenance IT & Biomédical</a></li>
+          <li><a href="{{ route('service') }}#commerce">Commerce</a></li>
         </ul>
       </div>
 
       <div>
         <div class="footer-col-title">Contact</div>
         <ul class="footer-links">
-          <li><a href="tel:+237698359954">698 359 954</a></li>
-          <li><a href="tel:+237674180413">674 180 413</a></li>
+          <li><a href="tel:+237674180413">+237 674 180 413</a></li>
           <li><a href="mailto:polamsarl@gmail.com">polamsarl@gmail.com</a></li>
           <li style="color:var(--gray);font-size:0.82rem;margin-top:0.5rem;">Yaoundé, Cameroun</li>
         </ul>
@@ -57,11 +81,18 @@
     </div>
 
     <div class="footer-bottom">
-      <div class="footer-copy">© 2025 POLAM SARL · Tous droits réservés · RC N° — · Yaoundé, Cameroun</div>
+      <div>
+        <div class="footer-copy">© 2026 POLAM SARL · Tous droits réservés · RC N° — · Yaoundé, Cameroun</div>
+        {{-- Ta signature de développeur --}}
+        <div class="dev-credit">
+          Développé avec <span style="color:var(--orange)">⚡</span> par <a href="https://www.linkedin.com/in/gaus-fonhouo-961344236" target="_blank" class="dev-link" title="Développeur Full-Stack">Fonhouo Gaüs</a>
+        </div>
+      </div>
+
       <div class="footer-socials">
         <a href="https://www.facebook.com/polamsarl" target="_blank" class="social-btn" title="Facebook">f</a>
         <a href="https://www.linkedin.com/company/polam-sarl/" target="_blank" class="social-btn" title="LinkedIn" style="font-family:'Syne',sans-serif;font-weight:700;font-size:0.7rem;">in</a>
-        <a href="https://wa.me/237698359954" target="_blank" class="social-btn" title="WhatsApp">📱</a>
+        <a href="https://wa.me/237674180413" target="_blank" class="social-btn" title="WhatsApp">📞</a>
       </div>
     </div>
   </div>

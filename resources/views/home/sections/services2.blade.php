@@ -55,7 +55,7 @@
                         <p class="text-sm text-[var(--gray-light)] font-light leading-relaxed mb-8">
                             Étude, conception et câblage d'installations électriques domestiques, tertiaires et industrielles. Mise aux normes et dépannage.
                         </p>
-                        <a href="{{ route('service') }}#electricite" class="btn-ghost" style="padding: 0.6rem 1.5rem; font-size: 0.7rem;">En savoir plus</a>
+                        <a href="{{ route('service') }}#electrique" class="btn-ghost" style="padding: 0.6rem 1.5rem; font-size: 0.7rem;">En savoir plus</a>
                     </div>
 
                 </div>
@@ -116,7 +116,7 @@
                         <p class="text-sm text-[var(--gray-light)] font-light leading-relaxed mb-8">
                             Réseaux câblés, fibre optique, maintenance de parcs informatiques et dépannage matériel pour professionnels.
                         </p>
-                        <a href="{{ route('service') }}#informatique" class="btn-ghost" style="padding: 0.6rem 1.5rem; font-size: 0.7rem;">En savoir plus</a>
+                        <a href="{{ route('service') }}#reseaux" class="btn-ghost" style="padding: 0.6rem 1.5rem; font-size: 0.7rem;">En savoir plus</a>
                     </div>
                 </div>
             </div>
