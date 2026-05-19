@@ -5,7 +5,6 @@ use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LawsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticleController;
@@ -33,8 +32,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/users/{user}', UserController::class . '@edit')->middleware('can:update,user')->name('user.edit');
     Route::get('/admin/dashboard', DahsboardController::class . '@index')->name('admin_dashboard');
     Route::resource('/admin/articles', ArticleController::class)->middleware('auth');
-    Route::get('/admin/laws', LawsController::class . '@index_admin')->name('laws.index_admin');
-    Route::resource('/admin/laws', LawsController::class)->except(['index'])->middleware('auth');
     Route::get('/admin/settings', SettingController::class . '@index')->middleware('can:viewAny,' . Setting::class)->name('settings.index');
     Route::get('/admin/contact', ContactController::class . '@index_admin')->name('admin.contact.index');
 });

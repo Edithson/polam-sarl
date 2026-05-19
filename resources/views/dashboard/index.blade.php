@@ -25,7 +25,6 @@
         <main class="flex-1 flex flex-col min-w-0 bg-gray-50 overflow-y-auto mt-15">
             @yield('content')
         </main>
-        @include('dashboard.layout.footer')
     </div>
 
     <script>

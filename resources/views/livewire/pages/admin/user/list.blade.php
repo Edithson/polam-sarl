@@ -31,75 +31,91 @@ new class extends Component {
 
     public function rendering($view)
     {
-        // On définit ici que TOUT le HTML ci-dessous va dans @yield('content')
         return $view->layout('dashboard.index')->section('content');
     }
 }; ?>
 
-<div>
-    <div class="flex flex-col md:flex-row gap-4 mb-6">
-        <div class="relative flex-1">
-            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+<div class="font-['DM_Sans',sans-serif]">
+
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+        <div>
+            <div class="flex items-center gap-2 mb-1">
+                <span class="w-5 h-0.5 bg-orange-500 inline-block"></span>
+                <span class="font-['Syne',sans-serif] text-[10px] font-bold tracking-[0.18em] uppercase text-orange-500">Administration</span>
+            </div>
+            <h1 class="font-['Bebas_Neue',sans-serif] text-3xl tracking-wider text-gray-900 leading-none">Équipe & Utilisateurs</h1>
+        </div>
+
+        <a href="{{ route('user.create') }}" class="flex items-center justify-center gap-2 bg-orange-500 text-white px-5 py-2 rounded-sm font-['Syne',sans-serif] text-[10px] font-bold uppercase tracking-wider hover:bg-[#EA580C] transition-all shadow-sm">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            Ajouter
+        </a>
+    </div>
+
+    <div class="flex flex-col md:flex-row gap-4 mb-4">
+        <div class="relative flex-1 max-w-md">
+            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke-width="2" stroke-linecap="round"/></svg>
             </span>
             <input wire:model.live.debounce.300ms="search" type="text"
-                placeholder="Rechercher un utilisateur..."
-                class="w-auto pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 outline-none transition-all">
+                placeholder="Rechercher (nom, email)..."
+                class="w-full pl-9 pr-4 py-2 bg-white rounded-sm border border-[#E8EAF0] text-xs text-gray-600 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all placeholder-gray-400">
         </div>
     </div>
-    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-        <table class="w-full text-left border-collapse">
-            <thead class="bg-slate-50 border-b border-slate-200">
-                <tr>
-                    <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Utilisateur</th>
-                    <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Email</th>
-                    <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Date de création</th>
-                    <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Actions</th>
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-100">
-                @forelse ($users as $user)
-                    <tr class="hover:bg-slate-50 transition-colors" wire:key="{{ $user->id }}">
-                        <td class="px-6 py-4">
-                            <div class="flex items-center gap-3">
-                                <div class="w-12 h-12 rounded-lg bg-slate-100 overflow-hidden flex-shrink-0 border border-slate-200">
-                                    <div class="w-full h-full flex items-center justify-center text-slate-400">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+
+    <div class="bg-white rounded-sm shadow-xs border border-[#E8EAF0] overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-xs text-left border-collapse">
+                <thead class="bg-[#F5F6FA] border-b border-[#E8EAF0]">
+                    <tr>
+                        <th class="px-5 py-3 font-['Syne',sans-serif] font-bold text-[9px] tracking-[0.15em] uppercase text-gray-400">Utilisateur</th>
+                        <th class="px-3 py-3 font-['Syne',sans-serif] font-bold text-[9px] tracking-[0.15em] uppercase text-gray-400">Email</th>
+                        <th class="px-3 py-3 font-['Syne',sans-serif] font-bold text-[9px] tracking-[0.15em] uppercase text-gray-400">Création</th>
+                        <th class="px-5 py-3 text-right font-['Syne',sans-serif] font-bold text-[9px] tracking-[0.15em] uppercase text-gray-400">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-[#E8EAF0]/60">
+                    @forelse ($users as $user)
+                        <tr class="hover:bg-[#FFF7ED] transition-colors" wire:key="{{ $user->id }}">
+                            <td class="px-5 py-3">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-sm bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center flex-shrink-0 text-white font-['Syne',sans-serif] font-bold text-[10px]">
+                                        {{ substr($user->name, 0, 2) }}
+                                    </div>
+                                    <div>
+                                        <div class="font-['Syne',sans-serif] font-bold text-gray-800 uppercase tracking-wide text-[11px]">{{ $user->name }}</div>
                                     </div>
                                 </div>
-                                <div>
-                                    <div class="font-bold text-slate-700 line-clamp-1">{{ $user->name }}</div>
+                            </td>
+                            <td class="px-3 py-3">
+                                <span class="text-gray-500">{{ $user->email }}</span>
+                            </td>
+                            <td class="px-3 py-3 text-gray-400">
+                                {{ $user->created_at->format('d/m/Y') }}
+                            </td>
+                            <td class="px-5 py-3 text-right">
+                                <div class="flex justify-end gap-1.5">
+                                    <a href="{{ route('user.edit', $user) }}" class="p-1.5 text-gray-400 hover:text-orange-500 hover:bg-orange-50 rounded-sm transition-all" title="Éditer">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                    </a>
                                 </div>
-                            </div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <span class="text-sm text-slate-600">{{ $user->email }}</span>
-                        </td>
-                        <td class="px-6 py-4 text-sm text-slate-500">
-                            {{ $user->created_at->format('d/m/Y') }}
-                        </td>
-                        <td class="px-6 py-4 text-right">
-                            <div class="flex justify-end gap-2">
-                                <a href="{{ route('user.edit', $user) }}" class="p-2 text-slate-400 hover:text-emerald-600 transition-colors">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="5" class="px-6 py-12 text-center text-slate-500">
-                            Aucun utilisateur trouvé. <a href="{{ route('user.create') }}" class="text-emerald-600 font-bold hover:underline">Créez votre premier utilisateur !</a>
-                        </td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4" class="px-5 py-10 text-center text-gray-500 text-xs">
+                                Aucun utilisateur trouvé. <a href="{{ route('user.create') }}" class="text-orange-500 font-bold hover:underline">Ajoutez votre premier collaborateur.</a>
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+
         @if($users->hasPages())
-            <div class="px-6 py-4 bg-slate-50 border-t border-slate-200">
+            <div class="px-5 py-3 bg-[#F5F6FA] border-t border-[#E8EAF0]">
                 {{ $users->links() }}
             </div>
         @endif
     </div>
 </div>
-

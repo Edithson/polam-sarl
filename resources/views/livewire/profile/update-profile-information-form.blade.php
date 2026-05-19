@@ -48,54 +48,64 @@ $sendVerification = function () {
 
 ?>
 
-<section>
-    <header>
-        <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Information de profil') }}
-        </h2>
-
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __("Mettre à jour les informations de votre profil et votre adresse email.") }}
+<section class="font-['DM_Sans',sans-serif]">
+    <header class="mb-6 border-b border-[#E8EAF0] pb-3">
+        <div class="flex items-center gap-2 mb-1">
+            <span class="w-3 h-3 bg-orange-500 rounded-sm inline-block"></span>
+            <h2 class="font-['Syne',sans-serif] text-sm font-bold text-gray-900 uppercase tracking-wider">
+                Information de profil
+            </h2>
+        </div>
+        <p class="text-[11px] text-gray-500 ml-5">
+            Mettre à jour les informations de votre profil et votre adresse email.
         </p>
     </header>
 
-    <form wire:submit="updateProfileInformation" class="mt-6 space-y-6">
+    <form wire:submit="updateProfileInformation" class="space-y-5">
         <div>
-            <label for="name" class="block text-sm font-bold text-slate-700 mb-2">Nom</label>
-            <input wire:model="name" id="name" name="name" type="text" required autofocus autocomplete="name" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 outline-none transition-all">
-            <x-input-error class="text-red-500 text-xs mt-1" :messages="$errors->get('name')" />
+            <label for="name" class="block text-[10px] font-bold font-['Syne',sans-serif] tracking-[0.18em] uppercase text-gray-500 mb-2">Nom</label>
+            <input wire:model="name" id="name" name="name" type="text" required autofocus autocomplete="name"
+                   class="w-full px-4 py-2.5 bg-[#F5F6FA] rounded-sm border border-[#E8EAF0] text-xs focus:ring-1 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all">
+            <x-input-error class="text-red-500 text-[10px] mt-1" :messages="$errors->get('name')" />
         </div>
 
         <div>
-            <label for="email" class="block text-sm font-bold text-slate-700 mb-2">Email</label>
-            <input wire:model="email" id="email" name="email" type="email" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 outline-none transition-all" required autocomplete="username" />
-            <x-input-error class="text-red-500 text-xs mt-1" :messages="$errors->get('email')" />
+            <label for="email" class="block text-[10px] font-bold font-['Syne',sans-serif] tracking-[0.18em] uppercase text-gray-500 mb-2">Email</label>
+            <input wire:model="email" id="email" name="email" type="email" required autocomplete="username"
+                   class="w-full px-4 py-2.5 bg-[#F5F6FA] rounded-sm border border-[#E8EAF0] text-xs focus:ring-1 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all" />
+            <x-input-error class="text-red-500 text-[10px] mt-1" :messages="$errors->get('email')" />
 
             @if (auth()->user() instanceof MustVerifyEmail && ! auth()->user()->hasVerifiedEmail())
-                <div>
-                    <p class="text-sm mt-2 text-gray-800">
-                        {{ __('Votre adresse email n\'est pas vérifiée.') }}
-
-                        <button wire:click.prevent="sendVerification" class="flex items-center gap-2 bg-slate-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-emerald-600 transition-all shadow-lg active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed">
-                            {{ __('Cliquez ici pour renvoyer l\'email de vérification.') }}
+                <div class="mt-3 p-3 bg-[#FFF7ED] border border-orange-200 rounded-sm">
+                    <p class="text-[11px] text-gray-800">
+                        Votre adresse email n'est pas vérifiée.
+                        <button wire:click.prevent="sendVerification" class="font-['Syne',sans-serif] font-bold text-[10px] uppercase tracking-wider text-orange-500 hover:text-orange-600 underline ml-1">
+                            Renvoyer l'email de vérification.
                         </button>
                     </p>
 
                     @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 font-medium text-sm text-green-600">
-                            {{ __('Un nouveau lien de vérification a été envoyé à votre adresse email.') }}
+                        <p class="mt-2 font-['Syne',sans-serif] font-bold text-[10px] uppercase tracking-wider text-green-600">
+                            Un nouveau lien a été envoyé.
                         </p>
                     @endif
                 </div>
             @endif
         </div>
 
-        <div class="flex items-center gap-4">
-            <x-primary-button class="flex items-center gap-2 bg-slate-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-emerald-600 transition-all shadow-lg active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed">{{ __('Enregistrer') }}</x-primary-button>
+        <div class="flex items-center gap-4 pt-2">
+            <button type="submit" class="bg-gray-900 text-white px-6 py-2.5 rounded-sm font-['Syne',sans-serif] text-[10px] font-bold uppercase tracking-wider hover:bg-orange-500 transition-all active:scale-[0.98]">
+                Enregistrer
+            </button>
 
-            <x-action-message class="me-3 text-green-600" on="profile-updated">
-                {{ __('Enregistré.') }}
-            </x-action-message>
+            <span x-data="{ show: false }"
+                  x-show="show"
+                  x-transition
+                  x-init="@this.on('profile-updated', () => { show = true; setTimeout(() => show = false, 3000) })"
+                  class="font-['Syne',sans-serif] font-bold text-[10px] uppercase tracking-wider text-green-600"
+                  style="display: none;">
+                Enregistré.
+            </span>
         </div>
     </form>
 </section>
