@@ -274,45 +274,17 @@
             </div>
 
             <div class="space-y-4">
-                <details class="faq-item" name="faq">
-                    <summary class="faq-summary">
-                        Intervenez-vous en dehors de Yaoundé ?
-                        <span class="faq-icon">▼</span>
-                    </summary>
-                    <div class="faq-content">
-                        Absolument. Bien que notre siège soit situé à Yaoundé, les équipes de POLAM SARL sont mobiles et interviennent sur toute l'étendue du territoire national (Cameroun) ainsi que dans la sous-région, selon l'envergure de votre projet.
-                    </div>
-                </details>
-
-                <details class="faq-item" name="faq">
-                    <summary class="faq-summary">
-                        Comment se déroule la demande de devis ?
-                        <span class="faq-icon">▼</span>
-                    </summary>
-                    <div class="faq-content">
-                        Une fois que vous nous contactez (via le formulaire, WhatsApp ou par téléphone), un expert analyse votre demande. Si nécessaire, nous programmons une visite technique sur le site pour évaluer les contraintes réelles. Ensuite, nous vous transmettons un devis détaillé, transparent et gratuit sous 24 à 48 heures.
-                    </div>
-                </details>
-
-                <details class="faq-item" name="faq">
-                    <summary class="faq-summary">
-                        Proposez-vous des garanties sur le matériel installé ?
-                        <span class="faq-icon">▼</span>
-                    </summary>
-                    <div class="faq-content">
-                        Oui. Tous les équipements que nous fournissons (panneaux solaires, caméras, câblage, équipements IT) proviennent de marques reconnues et bénéficient de la garantie constructeur. De plus, nous offrons une garantie sur notre main-d'œuvre et un service après-vente (SAV) réactif en cas d'anomalie.
-                    </div>
-                </details>
-
-                <details class="faq-item" name="faq">
-                    <summary class="faq-summary">
-                        Prenez-vous en charge la maintenance de systèmes que vous n'avez pas installés ?
-                        <span class="faq-icon">▼</span>
-                    </summary>
-                    <div class="faq-content">
-                        Oui, nous proposons des services de maintenance préventive et curative (dépannage) pour les installations électriques, parcs informatiques, systèmes de sécurité et équipements biomédicaux existants. Nous réalisons d'abord un audit technique de l'existant avant toute intervention.
-                    </div>
-                </details>
+                @foreach ($faqs as $faq)
+                    <details class="faq-item" name="faq">
+                        <summary class="faq-summary">
+                            {{ $faq['question'] }}
+                            <span class="faq-icon">▼</span>
+                        </summary>
+                        <div class="faq-content">
+                            {{ $faq['answer'] }}
+                        </div>
+                    </details>
+                @endforeach
             </div>
         </div>
     </section>

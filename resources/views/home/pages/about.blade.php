@@ -525,57 +525,22 @@
         </div>
 
         <div class="timeline max-w-4xl mx-auto">
-            {{-- 2019 --}}
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3 class="font-display text-3xl text-[var(--orange)] mb-2 tracking-widest">2019</h3>
-                    <h4 class="font-heading font-bold text-sm uppercase tracking-wide text-[var(--white)] mb-3">Création de POLAM SARL</h4>
-                    <p class="text-[var(--gray-light)] font-light text-sm leading-relaxed">
-                        Lancement des activités à Yaoundé avec une vision claire : rendre la technologie
-                        accessible à tous. Premiers contrats en installation électrique résidentielle.
-                    </p>
+            @foreach ($timeline as $item)
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 class="font-display text-3xl text-[var(--orange)] mb-2 tracking-widest">
+                            {{ $item['year'] }}
+                        </h3>
+                        <h4 class="font-heading font-bold text-sm uppercase tracking-wide text-[var(--white)] mb-3">
+                            {{ $item['title'] }}
+                        </h4>
+                        <p class="text-[var(--gray-light)] font-light text-sm leading-relaxed">
+                            {{ $item['description'] }}
+                        </p>
+                    </div>
                 </div>
-            </div>
-
-            {{-- 2020 --}}
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3 class="font-display text-3xl text-[var(--orange)] mb-2 tracking-widest">2020</h3>
-                    <h4 class="font-heading font-bold text-sm uppercase tracking-wide text-[var(--white)] mb-3">Élargissement du portefeuille</h4>
-                    <p class="text-[var(--gray-light)] font-light text-sm leading-relaxed">
-                        Extension aux installations d'énergie solaire et aux systèmes de vidéosurveillance.
-                        Premiers contrats tertiaires avec des PME locales.
-                    </p>
-                </div>
-            </div>
-
-            {{-- 2022 --}}
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3 class="font-display text-3xl text-[var(--orange)] mb-2 tracking-widest">2022</h3>
-                    <h4 class="font-heading font-bold text-sm uppercase tracking-wide text-[var(--white)] mb-3">Pôle Biomédical & Informatique</h4>
-                    <p class="text-[var(--gray-light)] font-light text-sm leading-relaxed">
-                        Lancement du service de maintenance des équipements biomédicaux et informatiques.
-                        Consolidation de la présence sur Yaoundé et Douala.
-                    </p>
-                </div>
-            </div>
-
-            {{-- 2025 --}}
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3 class="font-display text-3xl text-[var(--orange)] mb-2 tracking-widest">2025</h3>
-                    <h4 class="font-heading font-bold text-sm uppercase tracking-wide text-[var(--white)] mb-3">Innovation & Expansion</h4>
-                    <p class="text-[var(--gray-light)] font-light text-sm leading-relaxed">
-                        Intégration de solutions de monitoring intelligent et d'automatisation avancée.
-                        Vision d'expansion vers les marchés d'Afrique centrale.
-                    </p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

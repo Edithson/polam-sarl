@@ -230,207 +230,70 @@
             </div>
         </section>
 
-        {{-- ════════════════════════════════════════
-             SERVICE 1 — Installation Électrique
-        ════════════════════════════════════════ --}}
         <div class="space-y-0">
-            <section id="electrique" class="reveal py-16 lg:py-24 overflow-hidden bg-[var(--dark)]">
-                <div class="container mx-auto px-6 max-w-7xl">
-                    <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-                        {{-- Visual --}}
-                        <div class="w-full lg:w-1/2 reveal-left">
-                            <div class="relative">
-                                <div class="deco-circle-orange -top-4 -left-4"></div>
-                                <div class="relative z-10 h-[420px] w-full flex items-center justify-center bg-[var(--dark-2)]"
-                                     style="border:1px solid color-mix(in srgb, var(--orange) 18%, transparent); clip-path: polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px);">
-                                    <div class="text-center">
-                                        <img class="text-6xl text-[var(--orange)]" src="{{ asset('media/img/services/installation_electrique_domestique.webp') }}" alt="Installation Électrique"/>
-                                        <p class="mt-4 font-heading font-bold text-sm text-[var(--white)] tracking-widest uppercase">Installation Électrique</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- Content --}}
-                        <div class="w-full lg:w-1/2 reveal-right">
-                            <div class="badge-tag">Service Principal</div>
-                            <h2 class="text-3xl md:text-4xl font-display tracking-wide mt-2 mb-5">
-                                Installation Électrique Domestique & Tertiaire
-                            </h2>
-                            <p class="mb-8 text-lg font-light leading-relaxed text-[var(--gray-light)]">
-                                POLAM SARL assure l'étude, la conception et la mise en œuvre de tous vos projets
-                                d'installation électrique — du logement individuel aux bâtiments tertiaires et industriels,
-                                dans le strict respect des normes en vigueur.
-                            </p>
-                            <ul>
-                                <li class="svc-item">
-                                    <div class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></div>
-                                    <span>Étude et conception de plans électriques aux normes</span>
-                                </li>
-                                <li class="svc-item">
-                                    <div class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></div>
-                                    <span>Câblage, pose de tableaux électriques et appareillage</span>
-                                </li>
-                                <li class="svc-item">
-                                    <div class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></div>
-                                    <span>Mise en conformité des installations existantes</span>
-                                </li>
-                                <li class="svc-item">
-                                    <div class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></div>
-                                    <span>Installation domotique et gestion intelligente de l'énergie</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            @foreach ($services as $service)
+                @php
+                    $isOdd  = $loop->odd;
+                    $sectionBg  = $isOdd ? 'bg-[var(--dark)]'   : 'bg-[var(--dark-2)]';
+                    $flexDir    = $isOdd ? 'lg:flex-row'         : 'lg:flex-row-reverse';
+                    $visualReveal  = $isOdd ? 'reveal-left'      : 'reveal-right';
+                    $contentReveal = $isOdd ? 'reveal-right'     : 'reveal-left';
+                    $decoClass  = $isOdd ? 'deco-circle-orange -top-4 -left-4' : 'deco-circle-dark -bottom-4 -right-4';
+                    $imgBoxBg   = $isOdd ? 'bg-[var(--dark-2)]' : 'bg-[var(--dark-3)]';
+                    $clipPath   = $isOdd
+                        ? 'polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px)'
+                        : 'polygon(0% 0%, calc(100% - 20px) 0%, 100% 20px, 100% 100%, 20px 100%, 0% calc(100% - 20px))';
+                @endphp
 
-            {{-- ════════════════════════════════════════
-                 SERVICE 2 — Énergie Solaire
-            ════════════════════════════════════════ --}}
-            <section id="solaire" class="reveal py-16 lg:py-24 overflow-hidden bg-[var(--dark-2)]">
-                <div class="container mx-auto px-6 max-w-7xl">
-                    <div class="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20">
-                        {{-- Visual --}}
-                        <div class="w-full lg:w-1/2 reveal-right">
-                            <div class="relative">
-                                <div class="deco-circle-dark -bottom-4 -right-4"></div>
-                                <div class="relative z-10 h-[420px] w-full flex items-center justify-center bg-[var(--dark-3)]"
-                                     style="border:1px solid color-mix(in srgb, var(--orange) 18%, transparent); clip-path: polygon(0% 0%, calc(100% - 20px) 0%, 100% 20px, 100% 100%, 20px 100%, 0% calc(100% - 20px));">
-                                    <div class="text-center">
-                                        <img class="text-6xl text-[var(--orange)]" src="{{ asset('media/img/services/installation_solaire.png') }}" alt="Énergie Solaire"/>
-                                        <p class="mt-4 font-heading font-bold text-sm text-[var(--white)] tracking-widest uppercase">Énergie Solaire</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- Content --}}
-                        <div class="w-full lg:w-1/2 reveal-left">
-                            <div class="badge-tag">Énergie Renouvelable</div>
-                            <h2 class="text-3xl md:text-4xl font-display tracking-wide mt-2 mb-5">
-                                Énergie Solaire & Systèmes Photovoltaïques
-                            </h2>
-                            <p class="mb-8 text-lg font-light leading-relaxed text-[var(--gray-light)]">
-                                Réduisez votre facture énergétique et gagnez en autonomie grâce à nos solutions solaires
-                                sur mesure — dimensionnées, installées et maintenues par nos techniciens certifiés.
-                            </p>
-                            <ul>
-                                <li class="svc-item">
-                                    <div class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></div>
-                                    <span>Étude de faisabilité et dimensionnement des installations solaires</span>
-                                </li>
-                                <li class="svc-item">
-                                    <div class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></div>
-                                    <span>Pose de panneaux photovoltaïques et onduleurs</span>
-                                </li>
-                                <li class="svc-item">
-                                    <div class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></div>
-                                    <span>Installation de systèmes de stockage et de batteries</span>
-                                </li>
-                                <li class="svc-item">
-                                    <div class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></div>
-                                    <span>Systèmes hybrides solaire + réseau pour continuité électrique</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                <section id="{{ $service['id'] }}" class="reveal py-16 lg:py-24 overflow-hidden {{ $sectionBg }}">
+                    <div class="container mx-auto px-6 max-w-7xl">
+                        <div class="flex flex-col {{ $flexDir }} items-center gap-12 lg:gap-20">
 
-            {{-- ════════════════════════════════════════
-                 SERVICE 3 — Vidéosurveillance & Alarme
-            ════════════════════════════════════════ --}}
-            <section id="securite" class="reveal py-16 lg:py-24 overflow-hidden bg-[var(--dark)]">
-                <div class="container mx-auto px-6 max-w-7xl">
-                    <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-                        {{-- Visual --}}
-                        <div class="w-full lg:w-1/2 reveal-left">
-                            <div class="relative">
-                                <div class="deco-circle-orange -top-4 -left-4"></div>
-                                <div class="relative z-10 h-[420px] w-full flex items-center justify-center bg-[var(--dark-2)]"
-                                     style="border:1px solid color-mix(in srgb, var(--orange) 18%, transparent); clip-path: polygon(20px 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%, 0% 20px);">
-                                    <div class="text-center">
-                                        <img class="text-6xl text-[var(--orange)]" src="{{ asset('media/img/services/securite2.png') }}" alt="Vidéosurveillance & Alarme"/>
-                                        <p class="mt-4 font-heading font-bold text-sm text-[var(--white)] tracking-widest uppercase">Sécurité & Accès</p>
+                            {{-- Visual --}}
+                            <div class="w-full lg:w-1/2 {{ $visualReveal }}">
+                                <div class="relative">
+                                    <div class="{{ $decoClass }}"></div>
+                                    <div class="relative z-10 h-[420px] w-full flex items-center justify-center {{ $imgBoxBg }}"
+                                        style="border:1px solid color-mix(in srgb, var(--orange) 18%, transparent); clip-path: {{ $clipPath }};">
+                                        <div class="text-center">
+                                            <img class="text-6xl text-[var(--orange)]"
+                                                src="{{ asset($service['image']) }}"
+                                                alt="{{ $service['image_alt'] }}"/>
+                                            <p class="mt-4 font-heading font-bold text-sm text-[var(--white)] tracking-widest uppercase">
+                                                {{ $service['image_label'] }}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        {{-- Content --}}
-                        <div class="w-full lg:w-1/2 reveal-right">
-                            <div class="badge-tag">Sécurité</div>
-                            <h2 class="text-3xl md:text-4xl font-display tracking-wide mt-2 mb-5">
-                                Vidéosurveillance, Alarme & Contrôle d'Accès
-                            </h2>
-                            <p class="mb-8 text-lg font-light leading-relaxed text-[var(--gray-light)]">
-                                Protégez vos biens, vos locaux et vos collaborateurs grâce à nos systèmes de sécurité
-                                intégrés — vidéosurveillance HD, alarmes techniques et contrôle d'accès biométrique.
-                            </p>
-                            <ul>
-                                <li class="svc-item">
-                                    <div class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></div>
-                                    <span>Installation de caméras IP et systèmes CCTV HD / 4K</span>
-                                </li>
-                                <li class="svc-item">
-                                    <div class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></div>
-                                    <span>Systèmes d'alarme intrusion et détection incendie</span>
-                                </li>
-                                <li class="svc-item">
-                                    <div class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></div>
-                                    <span>Contrôle d'accès par badge, biométrie ou code</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
-            {{-- ════════════════════════════════════════
-                 SERVICE 4 — Réseaux & Télécoms
-            ════════════════════════════════════════ --}}
-            <section id="reseaux" class="reveal py-16 lg:py-24 overflow-hidden bg-[var(--dark-2)]">
-                <div class="container mx-auto px-6 max-w-7xl">
-                    <div class="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20">
-                        {{-- Visual --}}
-                        <div class="w-full lg:w-1/2 reveal-right">
-                            <div class="relative">
-                                <div class="deco-circle-dark -bottom-4 -right-4"></div>
-                                <div class="relative z-10 h-[420px] w-full flex items-center justify-center bg-[var(--dark-3)]"
-                                     style="border:1px solid color-mix(in srgb, var(--orange) 18%, transparent); clip-path: polygon(0% 0%, calc(100% - 20px) 0%, 100% 20px, 100% 100%, 20px 100%, 0% calc(100% - 20px));">
-                                    <div class="text-center">
-                                        <img class="text-6xl text-[var(--orange)]" src="{{ asset('media/img/services/reseau_telecom.jpg') }}" alt="Réseaux & Télécoms"/>
-                                        <p class="mt-4 font-heading font-bold text-sm text-[var(--white)] tracking-widest uppercase">Réseaux & Télécoms</p>
-                                    </div>
-                                </div>
+                            {{-- Content --}}
+                            <div class="w-full lg:w-1/2 {{ $contentReveal }}">
+                                <div class="badge-tag">{{ $service['badge'] }}</div>
+                                <h2 class="text-3xl md:text-4xl font-display tracking-wide mt-2 mb-5">
+                                    {{ $service['title'] }}
+                                </h2>
+                                <p class="mb-8 text-lg font-light leading-relaxed text-[var(--gray-light)]">
+                                    {{ $service['description'] }}
+                                </p>
+                                <ul>
+                                    @foreach ($service['points'] as $point)
+                                        <li class="svc-item">
+                                            <div class="check-icon">
+                                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                            </div>
+                                            <span>{{ $point }}</span>
+                                        </li>
+                                    @endforeach
+                                </ul>
                             </div>
-                        </div>
-                        {{-- Content --}}
-                        <div class="w-full lg:w-1/2 reveal-left">
-                            <div class="badge-tag">Télécommunications</div>
-                            <h2 class="text-3xl md:text-4xl font-display tracking-wide mt-2 mb-5">
-                                Réseaux & Télécommunications
-                            </h2>
-                            <p class="mb-8 text-lg font-light leading-relaxed text-[var(--gray-light)]">
-                                Connectez votre organisation avec des infrastructures réseau robustes et évolutives.
-                                De la fibre optique au Wi-Fi professionnel, nous concevons des solutions sur mesure.
-                            </p>
-                            <ul>
-                                <li class="svc-item">
-                                    <div class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></div>
-                                    <span>Câblage structuré RJ45, fibre optique et baie de brassage</span>
-                                </li>
-                                <li class="svc-item">
-                                    <div class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></div>
-                                    <span>Déploiement de réseaux Wi-Fi professionnel (indoor/outdoor)</span>
-                                </li>
-                                <li class="svc-item">
-                                    <div class="check-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></div>
-                                    <span>Configuration de routeurs, switches et VPN sécurisés</span>
-                                </li>
-                            </ul>
+
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            @endforeach
         </div>
 
         {{-- ════════════════════════════════════════
