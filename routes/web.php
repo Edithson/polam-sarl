@@ -34,6 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/admin/articles', ArticleController::class)->middleware('auth');
     Route::get('/admin/settings', SettingController::class . '@index')->middleware('can:viewAny,' . Setting::class)->name('settings.index');
     Route::get('/admin/contact', ContactController::class . '@index_admin')->name('admin.contact.index');
+    Route::put('/admin/settings/fast', SettingController::class . '@fastUpdate')->name('setting.fast.update');
 });
 
 Route::view('dashboard', 'dashboard')

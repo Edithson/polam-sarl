@@ -34,6 +34,27 @@ new class extends Component {
 }; ?>
 
 <div class="font-['DM_Sans',sans-serif]">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+        <div>
+            <div class="flex items-center gap-2 mb-1">
+                <span class="w-5 h-0.5 bg-orange-500 inline-block"></span>
+                <span class="font-['Syne',sans-serif] text-[10px] font-bold tracking-[0.18em] uppercase text-orange-500">Articles</span>
+            </div>
+            <h1 class="font-['Bebas_Neue',sans-serif] text-3xl tracking-wider text-gray-900 leading-none">Gérez le contenu éditorial de POLAM SARL</h1>
+        </div>
+        @can('create', App\Models\Article::class)
+            <a href="{{ route('articles.create') }}"
+            class="flex items-center justify-center gap-2 bg-orange-500 text-white px-5 py-2 rounded-sm font-['Syne',sans-serif] text-[10px] font-bold uppercase tracking-wider hover:bg-[#EA580C] transition-all shadow-sm">
+                Ajouter un article
+            </a>
+        @else
+            <button disabled
+                    title="Vous n'avez pas les permissions nécessaires"
+                    class="bg-slate-200 text-slate-400 px-6 py-3 rounded-xl font-bold cursor-not-allowed opacity-70">
+                Ajouter un article (Verrouillé)
+            </button>
+        @endcan
+    </div>
 
     <div class="flex flex-col md:flex-row gap-4 mb-6">
         <div class="relative flex-1">

@@ -131,17 +131,22 @@
                     <h3 class="font-['Syne',sans-serif] font-bold text-sm text-gray-900 uppercase tracking-wider">Paramètres Rapides</h3>
                 </div>
                 <div class="space-y-4">
-                    <div>
-                        <label class="block text-[10px] font-bold font-['Syne',sans-serif] tracking-[0.18em] uppercase text-gray-500 mb-1">Nom du site</label>
-                        <input type="text" value="POLAM SARL" class="w-full px-4 py-2.5 bg-[#F5F6FA] border border-[#E8EAF0] rounded-sm text-xs text-gray-900 focus:ring-1 focus:ring-orange-500 outline-none transition-all">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-bold font-['Syne',sans-serif] tracking-[0.18em] uppercase text-gray-500 mb-1">Email de contact</label>
-                        <input type="email" value="contact@polam.cm" class="w-full px-4 py-2.5 bg-[#F5F6FA] border border-[#E8EAF0] rounded-sm text-xs text-gray-900 focus:ring-1 focus:ring-orange-500 outline-none transition-all">
-                    </div>
-                    <button class="w-full bg-gray-900 text-white font-['Syne',sans-serif] font-bold text-[10px] uppercase tracking-wider py-3 rounded-sm hover:bg-orange-500 transition-all active:scale-[0.98]">
-                        Sauvegarder
-                    </button>
+                    <form id="fastUpdateForm" action="{{ route('setting.fast.update') }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <!-- Tes champs restent identiques -->
+                        <div class="mt-4">
+                            <label class="block text-[10px] font-bold font-['Syne',sans-serif] tracking-[0.18em] uppercase text-gray-500 mb-1">Nom du site</label>
+                            <input name="name" type="text" value="POLAM SARL" class="w-full px-4 py-2.5 bg-[#F5F6FA] border border-[#E8EAF0] rounded-sm text-xs text-gray-900 focus:ring-1 focus:ring-orange-500 outline-none transition-all">
+                        </div>
+                        <div class="mt-4">
+                            <label class="block text-[10px] font-bold font-['Syne',sans-serif] tracking-[0.18em] uppercase text-gray-500 mb-1">Email de contact</label>
+                            <input name="email" type="email" value="contact@polam.cm" class="w-full px-4 py-2.5 bg-[#F5F6FA] border border-[#E8EAF0] rounded-sm text-xs text-gray-900 focus:ring-1 focus:ring-orange-500 outline-none transition-all">
+                        </div>
+
+                        <!-- J'ai ajouté un ID sur le bouton pour le cibler facilement -->
+                        <input id="submitBtn" type="submit" value="Sauvegarder" class="mt-4 w-full bg-gray-900 text-white font-['Syne',sans-serif] font-bold text-[10px] uppercase tracking-wider py-3 rounded-sm hover:bg-orange-500 transition-all active:scale-[0.98] cursor-pointer" />
+                    </form>
                 </div>
             </div>
 
@@ -171,6 +176,88 @@
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('fastUpdateForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        if (form) {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                // État de chargement sur le bouton
+                const originalBtnText = submitBtn.value;
+                submitBtn.value = 'Sauvegarde...';
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-75', 'cursor-wait');
+
+                try {
+                    const response = await fetch(form.action, {
+                        method: 'POST', // POST est utilisé car @method('PUT') s'occupe de la surcharge via un champ caché
+                        headers: {
+                            'Accept': 'application/json', // Force Laravel à répondre en JSON
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: new FormData(form)
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok && data.success) {
+                        showToast(data.message, 'success');
+                    } else {
+                        showToast(data.message || 'Une erreur est survenue.', 'error');
+                    }
+                } catch (error) {
+                    console.error('Erreur:', error);
+                    showToast('Impossible de joindre le serveur.', 'error');
+                } finally {
+                    // Restauration du bouton
+                    submitBtn.value = originalBtnText;
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-75', 'cursor-wait');
+                }
+            });
+        }
+    });
+
+    /**
+     * Génère un Toast discret avec Tailwind CSS
+     */
+    function showToast(message, type = 'success') {
+        // Supprime un éventuel toast existant pour éviter les empilements
+        const existingToast = document.getElementById('custom-toast');
+        if (existingToast) existingToast.remove();
+
+        const toast = document.createElement('div');
+        toast.id = 'custom-toast';
+
+        // Couleurs selon le statut
+        const bgColor = type === 'success' ? 'bg-gray-900' : 'bg-red-500';
+        const borderColor = type === 'success' ? 'border-orange-500' : 'border-red-700';
+
+        // Classes Tailwind (adaptées au design system de ton form)
+        toast.className = `fixed bottom-5 right-5 ${bgColor} border-l-4 ${borderColor} text-white px-6 py-4 rounded-sm shadow-xl text-xs font-['Syne',sans-serif] tracking-wide transform transition-all duration-300 translate-y-10 opacity-0 z-50 flex items-center gap-3`;
+
+        // Icône basique en SVG
+        const icon = type === 'success'
+            ? `<svg class="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`
+            : `<svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>`;
+
+        toast.innerHTML = `${icon} <span>${message}</span>`;
+        document.body.appendChild(toast);
+
+        // Animation d'entrée
+        requestAnimationFrame(() => {
+            toast.classList.remove('translate-y-10', 'opacity-0');
+        });
+
+        // Disparition auto après 3 secondes
+        setTimeout(() => {
+            toast.classList.add('translate-y-10', 'opacity-0');
+            setTimeout(() => toast.remove(), 300); // Attend la fin de la transition pour détruire l'élément
+        }, 3000);
+    }
+
         function confirmDelete(id, title) {
             Swal.fire({
                 title: 'Êtes-vous sûr ?',
